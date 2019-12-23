@@ -5,16 +5,16 @@
   
 
   
-  <title>Hexo</title>
+  <title>Blog of YaoDongJi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="Blog of YaoDongJi">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="article:author" content="John Doe">
+<meta property="og:site_name" content="Blog of YaoDongJi">
+<meta property="article:author" content="YaoDongJi">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Blog of YaoDongJi" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -35,7 +35,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">Blog of YaoDongJi</a>
       </h1>
       
     </div>
@@ -62,6 +62,73 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-dapp开发环境部署" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" class="article-date">
+  <time datetime="2019-12-23T03:23:10.000Z" itemprop="datePublished">2019-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">dapp开发环境部署</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1.安装Nodejs环境，选择对应的平台，并下载LTS版本。安装完成后，在终端输入下面命令查看，如果正常输出版本号，则安装成功<br>            <strong><code>node -v</code></strong>   </p>
+<p>2.安装truffle框架，输入如下命令安装<br>        <strong><code>npm install -g truffle</code></strong><br>3.安装Ganache，下载对应平台安装包安装即可。Ganache是一个图形化的以太坊私有链程序，打开后便在本地建立起一个以太坊私有链，方便快捷。启动Ganache后，会有10个默认账户，并都有100Eth，当然，这只是测试用的，因为在你的私有链上。安装完成后请开启Ganache，后面部署合约时会用到。<br>4.安装metamask通过链接<a href="https://www.jianshu.com/p/8a40195a745d下载chrome插件，发现被禁用，将文件格式改为rar再次解压即可" target="_blank" rel="noopener">https://www.jianshu.com/p/8a40195a745d下载chrome插件，发现被禁用，将文件格式改为rar再次解压即可</a>  </p>
+<h3 id="创建目录，编程初体验"><a href="#创建目录，编程初体验" class="headerlink" title="创建目录，编程初体验"></a>创建目录，编程初体验</h3><p>1.首先，我们创建一个目录。目录就叫GDesign（graduation design）<br>2.在当前文件夹下输入truffle命令，来unbox一个项目<br>    <strong><code>truffle unbox pet-shop</code></strong><br>3.用你的编辑器打开这个项目，我使用的是notepad++，文件夹介绍在图里。有一点需要说明下，migrations是部署合约的文件夹，通过js来部署(图中migrations的解释写错了，请忽略)。<br><img src="/images/pasted-16.png" alt="upload successful"><br>4.我们新建一个智能合约，叫Election.sol，并写上下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.2; &#x2F;&#x2F;这句声明了我们的solidity版本</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;声明一个合约 contract是关键字，Election是合约名字，合约名字和文件名要一致</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">contract Election &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#x2F;* 声明一个public 的string类型的状态变量(可以理解为成员变量) *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    string public candidate;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#x2F;* constractor 函数名和合约名一样的函数就是构造函数，与C++相似*&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#x2F;* 构造函数是public的，因为需要外部来调用 *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    function Election() public&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        candidate &#x3D; &quot;Candidate 1&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>5.在终端中打开项目目录，输入下面的命令部署合约  </p>
+<figure class="highlight plain"><figcaption><span>migrate```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">6.部署后，输入truffle console，打开truffle终端，输入下面这行代码  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;Election.deployed().then(function(instance) &#123; app &#x3D; instance&#125;)</span></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-17.png" alt="upload successful"><br>当我们声明candicate状态变量为public时，会自动生成同名的get函数来获取这个状态变量的值，我们通过创建的app对象访问candicate，便得到了candicate的值。此时，打开你的Ganache，你会发现有个账户的以太币减少了，这就是部署合约的开销。  </p>
+<p><img src="/images/pasted-18.png" alt="upload successful"></p>
+<h3 id="合约测试"><a href="#合约测试" class="headerlink" title="合约测试"></a>合约测试</h3><p>因为智能合约一旦部署，不可更改，合约的Bug也会随之在区块链上永垂不朽。如果要修复Bug，必须重新部署合约，这会极大影响用户体验，所以奋不顾身地测试合约也是必要的。测试文件可以是Solidity编写，也可以是JavaScript来写。我们先看看JavaScript如何写测试。<br>1.准备工作<br>我们需要用到mocha测试框架和chai断言库，通过下面的命令就能安装他们  </p>
+<figure class="highlight plain"><figcaption><span>npm install --global mocha  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo npm install chai</span></pre></td></tr></table></figure>
+<p>2.写测试脚本<br>在test文件夹中创建一个election.js的测试脚本  </p>
+<p><img src="/images/pasted-19.png" alt="upload successful"><br>试脚本的代码如下，更多关于mocha测试框架和chai断言库的教程可以去网上搜搜</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var Election &#x3D; artifacts.require(&quot;.&#x2F;Election.sol&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 声明合约 第一个参数是段描述，描述你的测试，第二个参数是个函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;函数中的it 是一个测试用例，一个contract可以包含多个it</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">contract(&quot;Election&quot;, function(accounts)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    it(&quot;init with two candidates&quot;, function(accounts)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        return Election.deployed().then(function (instance)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            return instance.candidatesCount();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        &#125;).then(function(count)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">           assert.equal(count, 2);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
+<p>3.写好之后在终端中打开项目目录，输入truffle test，如果看到下面的输出，则测试通过  </p>
+<p><img src="/images/pasted-20.png" alt="upload successful"></p>
+<hr>
+<h3 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h3><ul>
+<li>truffle unbox时Error: connect ECONNREFUSED 151.101.228.133:443<br>解决连接github的某个网页被拒绝了。什么原因？网络配置有问题，和你连接的网络，或者你的网络的一些设置有关。<br>（换个网络就好了）<br>修改hosts文件：  </li>
+</ul>
+<p>Windows下：（这部分摘自<a href="https://blog.csdn.net/weixin_40089510/article/details/85936724）" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40089510/article/details/85936724）</a><br>找到这个路径C:\Windows\System32\drivers\etc，然后找到hosts文件（没有任何后缀的那个），然后修改内容，添加进github相关的所有ip。<br>从下面开始。<br>#127.0.0.1 gilisoft.com<br>#github<br>192.30.253.113 github.com<br>192.30.253.113 github.com<br>192.30.253.118 gist.github.com<br>192.30.253.119 gist.github.com</p>
+<p>GitHub Start<br>192.30.253.112 github.com<br>192.30.253.119 gist.github.com<br>151.101.100.133 assets-cdn.github.com<br>151.101.100.133 raw.githubusercontent.com<br>151.101.100.133 gist.githubusercontent.com<br>151.101.100.133 cloud.githubusercontent.com<br>151.101.100.133 camo.githubusercontent.com<br>151.101.100.133 avatars0.githubusercontent.com<br>151.101.100.133 avatars1.githubusercontent.com<br>151.101.100.133 avatars2.githubusercontent.com<br>151.101.100.133 avatars3.githubusercontent.com<br>151.101.100.133 avatars4.githubusercontent.com<br>151.101.100.133 avatars5.githubusercontent.com<br>151.101.100.133 avatars6.githubusercontent.com<br>151.101.100.133 avatars7.githubusercontent.com<br>151.101.100.133 avatars8.githubusercontent.com</p>
+<p>其实关键是要把你报错的那条ip加进去，比如我遇到的是151.101.192.133:443，那么我应该也把151.101.192.133加进去。<br>原文链接：<a href="https://blog.csdn.net/sinyusin/article/details/88776939" target="_blank" rel="noopener">https://blog.csdn.net/sinyusin/article/details/88776939</a></p>
+<hr>
+<h3 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h3><h4 id="Truffle，Ganache，Geth和Mist"><a href="#Truffle，Ganache，Geth和Mist" class="headerlink" title="Truffle，Ganache，Geth和Mist"></a>Truffle，Ganache，Geth和Mist</h4><ul>
+<li>Truffle：是以太坊的开发环境、测试框架和资产通道。换句话说，它可以帮助你开发、发布和测试智能合约等等。你可以阅读有关 Truffle 套件的文档（<a href="http://truffleframework.com/docs/），了解更多信息。" target="_blank" rel="noopener">http://truffleframework.com/docs/），了解更多信息。</a>  </li>
+<li>Ganache：以前叫作 TestRPC，如果你读过几个月前的教程的话，有可能他们在使用 TestRPC 的情境下配合使用了 Truffle，它在 TestRPC 和 Truffle 的集成后被重新命名为 Ganache。Ganache 的工作很简单：创建一个虚拟的以太坊区块链，并生成一些我们将在开发过程中用到的虚拟账号。  </li>
+<li>Mist：Mist 是一个分布式网络 apps 的浏览器，相当于是只针对 Dapps 的 Chrome 或 Firefox。目前来说，它仍然是不安全的，所以你还不能在不受信任的 dapp 中使用它。  </li>
+<li>以太坊钱包：它是 Mist 的一个版本，但只启动一个 dapp ——以太坊钱包（<a href="https://wallet.ethereum.org/）。Mist" target="_blank" rel="noopener">https://wallet.ethereum.org/）。Mist</a> 和以太坊钱包只是 UI（用户界面）前端，我们还需要一个将我们连接到以太坊区块链的核心程序（它可以是一个真正的以太坊区块链，也可以是一个测试版的）。  </li>
+<li>Geth：Geth 是把你连接到区块链的核心应用程序，它也可以启动一个新的区块链（在我们这个示例中，我们将创建一个本地测试网区块链），创建合约，挖掘以太币等。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" data-id="ck4ihhlw50000ucv0gwzggzae" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-以太坊账户创建和管理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -251,6 +318,10 @@
       <ul>
         
           <li>
+            <a href="/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">dapp开发环境部署</a>
+          </li>
+        
+          <li>
             <a href="/2019/12/20/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86/">以太坊以及账户创建和管理</a>
           </li>
         
@@ -274,7 +345,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
+      &copy; 2019 YaoDongJi<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
