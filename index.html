@@ -9,8 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Blog of YaoDongJi">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+<meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Blog of YaoDongJi">
+<meta property="og:locale" content="en_US">
 <meta property="article:author" content="YaoDongJi">
 <meta name="twitter:card" content="summary">
   
@@ -25,7 +26,7 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.1.0"></head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 <body>
   <div id="container">
@@ -63,6 +64,199 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-全栈投票demo学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/15/%E5%85%A8%E6%A0%88%E6%8A%95%E7%A5%A8demo%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2020-03-15T07:31:02.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/15/%E5%85%A8%E6%A0%88%E6%8A%95%E7%A5%A8demo%E5%AD%A6%E4%B9%A0/">全栈投票demo学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h3><p>链接 <a href="https://www.jianshu.com/p/b282d375e45e" target="_blank" rel="noopener">https://www.jianshu.com/p/b282d375e45e</a></p>
+<ol>
+<li>配置区块链本地运行环境，之前装过了python安装工具和web3，ganache_cli,安装命令 cnpm install ganache-cli <a href="mailto:web3@0.20.0">web3@0.20.0</a></li>
+<li>项目架构<br><img src="/images/pasted-28.png" alt="upload successful">  </li>
+<li>编译和部署一个合约的步骤<ol>
+<li>在node环境下获得web3和solc实例  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mahesh@projectblockchain:~<span class="regexp">/hello_world_voting$ node</span></span><br><span class="line"><span class="regexp">&gt; Web3 = require('web3')</span></span><br><span class="line"><span class="regexp">&gt; web3 = new Web3(new 						Web3.providers.HttpProvider("http:/</span><span class="regexp">/localhost:8545"));</span></span><br></pre></td></tr></table></figure></li>
+<li>读取代码作为变量，solc示例编译产生一个contract对象（包含abi和字节码信息）  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; code &#x3D; fs.readFileSync(&#39;Voting.sol&#39;).toString()</span><br><span class="line">&gt; solc &#x3D; require(&#39;solc&#39;)</span><br><span class="line">&gt; compiledCode &#x3D; solc.compile(code)</span><br></pre></td></tr></table></figure></li>
+<li>创建合约对象  <ol>
+<li>通过contract对象获取abi字符串变量<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; abiDefinition &#x3D; JSON.parse(compiledCode.contracts[&#39;:Voting&#39;].interface)</span><br></pre></td></tr></table></figure></li>
+<li>获得知道abi的合约对象，和字节码信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; VotingContract &#x3D; web3.eth.contract(abiDefinition)</span><br><span class="line">&gt; byteCode &#x3D; compiledCode.contracts[&#39;:Voting&#39;].bytecode</span><br></pre></td></tr></table></figure></li>
+<li>用以上信息部署合约，需要传入构造函数参数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    &gt; deployedContract &#x3D; VotingContract.new([&#39;Rama&#39;,&#39;Nick&#39;,&#39;Jose&#39;],&#123;data: byteCode, from: web3.eth.accounts[0], gas: 4700000&#125;)</span><br><span class="line">&gt; deployedContract.address</span><br></pre></td></tr></table></figure></li>
+<li>获取合约实例  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">     &gt; contractInstance &#x3D; VotingContract.at(deployedContract.address)</span><br><span class="line">     &#96;&#96;&#96;    </span><br><span class="line">   </span><br><span class="line">4. 使用实例调用合约接口</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>contractInstance.totalVotesFor.call(‘Rama’)<br>{ [String: ‘0’] s: 1, e: 0, c: [ 0 ] }<br>contractInstance.voteForCandidate(‘Rama’, {from: web3.eth.accounts[0]})<br>‘0xdedc7ae544c3dde74ab5a0b07422c5a51b5240603d31074f5b75c0ebc786bf53’<br>contractInstance.voteForCandidate(‘Rama’, {from: web3.eth.accounts[0]})<br>‘0x02c054d238038d68b65d55770fabfca592a5cf6590229ab91bbe7cd72da46de9’<br>contractInstance.voteForCandidate(‘Rama’, {from: web3.eth.accounts[0]})<br>‘0x3da069a09577514f2baaa11bc3015a16edf26aad28dffbcd126bde2e71f2b76f’<br>contractInstance.totalVotesFor.call(‘Rama’).toLocaleString()<br>‘3’<br>```  </p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>使用合约index.html时要修改index.js里的合约地址为自己自己合约实例地址</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/15/%E5%85%A8%E6%A0%88%E6%8A%95%E7%A5%A8demo%E5%AD%A6%E4%B9%A0/" data-id="ck817hhvt0000cov0dtqz8cb8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-七天学习计划养成" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/15/%E4%B8%83%E5%A4%A9%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92%E5%85%BB%E6%88%90/" class="article-date">
+  <time datetime="2020-03-15T02:42:28.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/15/%E4%B8%83%E5%A4%A9%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92%E5%85%BB%E6%88%90/">七天学习计划养成</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="七天计划养成"><a href="#七天计划养成" class="headerlink" title="七天计划养成"></a>七天计划养成</h3><ol>
+<li><p>十天内打卡<strong>七天</strong></p>
+</li>
+<li><p>每天<strong>八点十分之前</strong>起床，晚上<strong>11：30</strong>之前睡觉</p>
+</li>
+<li><p>起床后天气好的话出去跑步，期间听一篇<strong>新概念英语，并试背，大概半个小时</strong></p>
+</li>
+<li><p>吃完饭后半小时内学习，十一点半之前<strong>学习1.5h</strong>以上，上午学习<strong>2h+</strong></p>
+</li>
+<li><p>下午<strong>两点</strong>之前开始学习,学习<strong>2.5h+</strong></p>
+</li>
+<li><p>下午或者晚上背雅思<strong>单词100个</strong>，大概0.5h</p>
+</li>
+<li><p>如果有其他事务可以适当调整各项时间，尽量保证<strong>起床睡觉和学习5h+时间</strong></p>
+</li>
+<li><p>晚上<strong>8：00-9：00跳绳1000+</strong>，或者其他运动</p>
+</li>
+<li><p><strong>每天记录打卡和时间详情</strong></p>
+</li>
+</ol>
+<hr>
+<hr>
+<h4 id="第一天-2020-3-15"><a href="#第一天-2020-3-15" class="headerlink" title="第一天 2020.3.15"></a>第一天 2020.3.15</h4><ol>
+<li>上午10：00-11：40，外加中午一组单词，有2h<br> 学习内容：  <ul>
+<li>看了一个投票DApp的示例论文，改论文代码并不完整，有些理论东西比较晦涩，故没有特别深入。  </li>
+<li>制定了七天学习计划，博客记录  </li>
+<li>背诵了两篇新概念英语</li>
+<li>背了四十个单词  </li>
+</ul>
+</li>
+<li>下午2：15开始学习  <ul>
+<li>2:15-3:00找了投票demo学习  </li>
+<li>3点到5点被喊去下地干活，也算是做了一些工作</li>
+<li>晚上背了40个单词<br>共计大约3h</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li>总结，共计5h达成，其他暂无</li>
+</ol>
+<h4 id="第二天2020-3-19"><a href="#第二天2020-3-19" class="headerlink" title="第二天2020.3.19"></a>第二天2020.3.19</h4><ol>
+<li>早上<strong>八点半起床</strong>，赶集回来十点，十点到十点半背了新概念英语二第四篇，并回顾了前三篇，之后打游戏11：40，11；40-12：40，学习了全栈投票DApp第一部分，共计1.5H</li>
+<li>下午3：10-5：50<strong>共计2h40min</strong></li>
+<li>晚上8点吃完饭打了一把游戏，8：30-9：30<strong>跳绳1000+</strong>，到10：00背了100个单词，然后记录今天共计40min  </li>
+<li>今日共计4h50min  </li>
+</ol>
+<h4 id="第三天2020-3-21"><a href="#第三天2020-3-21" class="headerlink" title="第三天2020.3.21"></a>第三天2020.3.21</h4><ol>
+<li>早上8:30起床，打了一上午游戏然后做饭吃饭</li>
+<li>下午2:00开始学习</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/15/%E4%B8%83%E5%A4%A9%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92%E5%85%BB%E6%88%90/" data-id="ck7y8vmrs00007sv0cfl2grmw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/09/hello-world/" class="article-date">
+  <time datetime="2020-01-09T07:48:46.686Z" itemprop="datePublished">2020-01-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/09/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/09/hello-world/" data-id="ck56fugfw00008gv011hzevlw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-dapp开发环境部署" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" class="article-date">
@@ -88,17 +282,17 @@
         <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1.安装Nodejs环境，选择对应的平台，并下载LTS版本。安装完成后，在终端输入下面命令查看，如果正常输出版本号，则安装成功<br>            <strong><code>node -v</code></strong>   </p>
 <p>2.安装truffle框架，输入如下命令安装<br>        <strong><code>npm install -g truffle</code></strong><br>3.安装Ganache，下载对应平台安装包安装即可。Ganache是一个图形化的以太坊私有链程序，打开后便在本地建立起一个以太坊私有链，方便快捷。启动Ganache后，会有10个默认账户，并都有100Eth，当然，这只是测试用的，因为在你的私有链上。安装完成后请开启Ganache，后面部署合约时会用到。<br>4.安装metamask通过链接<a href="https://www.jianshu.com/p/8a40195a745d下载chrome插件，发现被禁用，将文件格式改为rar再次解压即可" target="_blank" rel="noopener">https://www.jianshu.com/p/8a40195a745d下载chrome插件，发现被禁用，将文件格式改为rar再次解压即可</a>  </p>
 <h3 id="创建目录，编程初体验"><a href="#创建目录，编程初体验" class="headerlink" title="创建目录，编程初体验"></a>创建目录，编程初体验</h3><p>1.首先，我们创建一个目录。目录就叫GDesign（graduation design）<br>2.在当前文件夹下输入truffle命令，来unbox一个项目<br>    <strong><code>truffle unbox pet-shop</code></strong><br>3.用你的编辑器打开这个项目，我使用的是notepad++，文件夹介绍在图里。有一点需要说明下，migrations是部署合约的文件夹，通过js来部署(图中migrations的解释写错了，请忽略)。<br><img src="/images/pasted-16.png" alt="upload successful"><br>4.我们新建一个智能合约，叫Election.sol，并写上下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.2; &#x2F;&#x2F;这句声明了我们的solidity版本</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;声明一个合约 contract是关键字，Election是合约名字，合约名字和文件名要一致</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">contract Election &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#x2F;* 声明一个public 的string类型的状态变量(可以理解为成员变量) *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    string public candidate;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#x2F;* constractor 函数名和合约名一样的函数就是构造函数，与C++相似*&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#x2F;* 构造函数是public的，因为需要外部来调用 *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    function Election() public&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        candidate &#x3D; &quot;Candidate 1&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pragma solidity ^0.4.2; &#x2F;&#x2F;这句声明了我们的solidity版本</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;声明一个合约 contract是关键字，Election是合约名字，合约名字和文件名要一致</span><br><span class="line">contract Election &#123;</span><br><span class="line">    &#x2F;* 声明一个public 的string类型的状态变量(可以理解为成员变量) *&#x2F;</span><br><span class="line">    string public candidate;</span><br><span class="line">    &#x2F;* constractor 函数名和合约名一样的函数就是构造函数，与C++相似*&#x2F;</span><br><span class="line">    &#x2F;* 构造函数是public的，因为需要外部来调用 *&#x2F;</span><br><span class="line">    function Election() public&#123;</span><br><span class="line">        candidate &#x3D; &quot;Candidate 1&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>5.在终端中打开项目目录，输入下面的命令部署合约  </p>
-<figure class="highlight plain"><figcaption><span>migrate```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">6.部署后，输入truffle console，打开truffle终端，输入下面这行代码  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;Election.deployed().then(function(instance) &#123; app &#x3D; instance&#125;)</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>migrate```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">6.部署后，输入truffle console，打开truffle终端，输入下面这行代码  </span><br><span class="line">&#96;&#96;&#96;Election.deployed().then(function(instance) &#123; app &#x3D; instance&#125;)</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/pasted-17.png" alt="upload successful"><br>当我们声明candicate状态变量为public时，会自动生成同名的get函数来获取这个状态变量的值，我们通过创建的app对象访问candicate，便得到了candicate的值。此时，打开你的Ganache，你会发现有个账户的以太币减少了，这就是部署合约的开销。  </p>
 <p><img src="/images/pasted-18.png" alt="upload successful"></p>
 <h3 id="合约测试"><a href="#合约测试" class="headerlink" title="合约测试"></a>合约测试</h3><p>因为智能合约一旦部署，不可更改，合约的Bug也会随之在区块链上永垂不朽。如果要修复Bug，必须重新部署合约，这会极大影响用户体验，所以奋不顾身地测试合约也是必要的。测试文件可以是Solidity编写，也可以是JavaScript来写。我们先看看JavaScript如何写测试。<br>1.准备工作<br>我们需要用到mocha测试框架和chai断言库，通过下面的命令就能安装他们  </p>
-<figure class="highlight plain"><figcaption><span>npm install --global mocha  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo npm install chai</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>npm install --global mocha  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install chai</span><br></pre></td></tr></table></figure>
 <p>2.写测试脚本<br>在test文件夹中创建一个election.js的测试脚本  </p>
 <p><img src="/images/pasted-19.png" alt="upload successful"><br>试脚本的代码如下，更多关于mocha测试框架和chai断言库的教程可以去网上搜搜</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var Election &#x3D; artifacts.require(&quot;.&#x2F;Election.sol&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 声明合约 第一个参数是段描述，描述你的测试，第二个参数是个函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;函数中的it 是一个测试用例，一个contract可以包含多个it</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">contract(&quot;Election&quot;, function(accounts)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    it(&quot;init with two candidates&quot;, function(accounts)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        return Election.deployed().then(function (instance)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            return instance.candidatesCount();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        &#125;).then(function(count)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">           assert.equal(count, 2);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var Election &#x3D; artifacts.require(&quot;.&#x2F;Election.sol&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 声明合约 第一个参数是段描述，描述你的测试，第二个参数是个函数</span><br><span class="line">&#x2F;&#x2F;函数中的it 是一个测试用例，一个contract可以包含多个it</span><br><span class="line">contract(&quot;Election&quot;, function(accounts)&#123;</span><br><span class="line">    it(&quot;init with two candidates&quot;, function(accounts)&#123;</span><br><span class="line">        return Election.deployed().then(function (instance)&#123;</span><br><span class="line">            return instance.candidatesCount();</span><br><span class="line">        &#125;).then(function(count)&#123;</span><br><span class="line">           assert.equal(count, 2);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>3.写好之后在终端中打开项目目录，输入truffle test，如果看到下面的输出，则测试通过  </p>
 <p><img src="/images/pasted-20.png" alt="upload successful"></p>
 <hr>
@@ -120,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" data-id="ck4ihhlw50000ucv0gwzggzae" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" data-id="ck56fx9sc00038gv0aojf21ym" class="article-share-link">Share</a>
       
       
     </footer>
@@ -163,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/20/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86/" data-id="ck4gfnuv00000ngv02qls4jkv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/20/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86/" data-id="ck56fx9s200018gv0dhoshsbh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -234,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E4%BB%8B%E7%BB%8D/" data-id="ck4b5jedj0000uov0hdmw9gkj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E4%BB%8B%E7%BB%8D/" data-id="ck56fx9sf00048gv0a054821k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -277,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/13/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8GitHub-hexo-%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="ck43x869v00009gv0d4rxg3ch" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/13/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8GitHub-hexo-%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="ck56fx9s700028gv0bb7i9k2m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -305,7 +499,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
     </div>
   </div>
 
@@ -318,19 +512,23 @@
       <ul>
         
           <li>
+            <a href="/2020/03/15/%E5%85%A8%E6%A0%88%E6%8A%95%E7%A5%A8demo%E5%AD%A6%E4%B9%A0/">全栈投票demo学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/15/%E4%B8%83%E5%A4%A9%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92%E5%85%BB%E6%88%90/">七天学习计划养成</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/09/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
             <a href="/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">dapp开发环境部署</a>
           </li>
         
           <li>
             <a href="/2019/12/20/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86/">以太坊以及账户创建和管理</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E4%BB%8B%E7%BB%8D/">区块链的介绍</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/13/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8GitHub-hexo-%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">关于使用GitHub+hexo 写博客的环境配置</a>
           </li>
         
       </ul>
@@ -345,7 +543,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 YaoDongJi<br>
+      &copy; 2020 YaoDongJi<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
