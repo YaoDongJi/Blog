@@ -64,10 +64,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-truffle框架学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/31/truffle%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2020-03-31T10:29:13.000Z" itemprop="datePublished">2020-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/31/truffle%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">truffle框架学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关键问题</p>
+<ol>
+<li>deployed API</li>
+<li>js中的promise是什么</li>
+<li>合约抽象是什么</li>
+<li>Mocha是什么<br>mocha是JavaScript的一种单元测试框架，既可以在浏览器环境下运行，也可以在Node.js环境下运行。使用mocha，我们就只需要专注于编写单元测试本身，然后，让mocha去自动运行所有的测试，并给出测试结果</li>
+<li>js学习<br><a href="https://www.liaoxuefeng.com/wiki/1022910821149312" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/1022910821149312</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/31/truffle%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" data-id="ck8o8057200022sv0erbs6wl7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-全栈投票demo学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/15/%E5%85%A8%E6%A0%88%E6%8A%95%E7%A5%A8demo%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2020-03-15T07:31:02.000Z" itemprop="datePublished">2020-03-15</time>
+  <time datetime="2020-03-15T07:31:00.000Z" itemprop="datePublished">2020-03-15</time>
 </a>
     
   </div>
@@ -88,25 +132,35 @@
       
         <h3 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h3><p>链接 <a href="https://www.jianshu.com/p/b282d375e45e" target="_blank" rel="noopener">https://www.jianshu.com/p/b282d375e45e</a></p>
 <ol>
-<li>配置区块链本地运行环境，之前装过了python安装工具和web3，ganache_cli,安装命令 cnpm install ganache-cli <a href="mailto:web3@0.20.0">web3@0.20.0</a></li>
-<li>项目架构<br><img src="/images/pasted-28.png" alt="upload successful">  </li>
-<li>编译和部署一个合约的步骤<ol>
-<li>在node环境下获得web3和solc实例  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mahesh@projectblockchain:~<span class="regexp">/hello_world_voting$ node</span></span><br><span class="line"><span class="regexp">&gt; Web3 = require('web3')</span></span><br><span class="line"><span class="regexp">&gt; web3 = new Web3(new 						Web3.providers.HttpProvider("http:/</span><span class="regexp">/localhost:8545"));</span></span><br></pre></td></tr></table></figure></li>
-<li>读取代码作为变量，solc示例编译产生一个contract对象（包含abi和字节码信息）  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; code &#x3D; fs.readFileSync(&#39;Voting.sol&#39;).toString()</span><br><span class="line">&gt; solc &#x3D; require(&#39;solc&#39;)</span><br><span class="line">&gt; compiledCode &#x3D; solc.compile(code)</span><br></pre></td></tr></table></figure></li>
-<li>创建合约对象  <ol>
-<li>通过contract对象获取abi字符串变量<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; abiDefinition &#x3D; JSON.parse(compiledCode.contracts[&#39;:Voting&#39;].interface)</span><br></pre></td></tr></table></figure></li>
-<li>获得知道abi的合约对象，和字节码信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; VotingContract &#x3D; web3.eth.contract(abiDefinition)</span><br><span class="line">&gt; byteCode &#x3D; compiledCode.contracts[&#39;:Voting&#39;].bytecode</span><br></pre></td></tr></table></figure></li>
-<li>用以上信息部署合约，需要传入构造函数参数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    &gt; deployedContract &#x3D; VotingContract.new([&#39;Rama&#39;,&#39;Nick&#39;,&#39;Jose&#39;],&#123;data: byteCode, from: web3.eth.accounts[0], gas: 4700000&#125;)</span><br><span class="line">&gt; deployedContract.address</span><br></pre></td></tr></table></figure></li>
-<li>获取合约实例  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">     &gt; contractInstance &#x3D; VotingContract.at(deployedContract.address)</span><br><span class="line">     &#96;&#96;&#96;    </span><br><span class="line">   </span><br><span class="line">4. 使用实例调用合约接口</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>contractInstance.totalVotesFor.call(‘Rama’)<br>{ [String: ‘0’] s: 1, e: 0, c: [ 0 ] }<br>contractInstance.voteForCandidate(‘Rama’, {from: web3.eth.accounts[0]})<br>‘0xdedc7ae544c3dde74ab5a0b07422c5a51b5240603d31074f5b75c0ebc786bf53’<br>contractInstance.voteForCandidate(‘Rama’, {from: web3.eth.accounts[0]})<br>‘0x02c054d238038d68b65d55770fabfca592a5cf6590229ab91bbe7cd72da46de9’<br>contractInstance.voteForCandidate(‘Rama’, {from: web3.eth.accounts[0]})<br>‘0x3da069a09577514f2baaa11bc3015a16edf26aad28dffbcd126bde2e71f2b76f’<br>contractInstance.totalVotesFor.call(‘Rama’).toLocaleString()<br>‘3’<br>```  </p>
-</blockquote>
+<li><p>配置区块链本地运行环境，之前装过了python安装工具和web3，ganache_cli,安装命令 cnpm install ganache-cli <a href="mailto:web3@0.20.0">web3@0.20.0</a></p>
+</li>
+<li><p>项目架构<br><img src="/images/pasted-28.png" alt="upload successful">  </p>
+</li>
+<li><p>编译和部署一个合约的步骤</p>
+<ol>
+<li><p>在node环境下获得web3和solc实例  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mahesh@projectblockchain:~<span class="regexp">/hello_world_voting$ node</span></span><br><span class="line"><span class="regexp">&gt; Web3 = require('web3')</span></span><br><span class="line"><span class="regexp">&gt; web3 = new Web3(new 						Web3.providers.HttpProvider("http:/</span><span class="regexp">/localhost:8545"));</span></span><br></pre></td></tr></table></figure></li>
+<li><p>读取代码作为变量，solc示例编译产生一个contract对象（包含abi和字节码信息）  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; code &#x3D; fs.readFileSync(&#39;Voting.sol&#39;).toString()</span><br><span class="line">&gt; solc &#x3D; require(&#39;solc&#39;)</span><br><span class="line">&gt; compiledCode &#x3D; solc.compile(code)</span><br></pre></td></tr></table></figure></li>
+<li><p>创建合约对象  </p>
+<ol>
+<li><p>通过contract对象获取abi字符串变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; abiDefinition &#x3D; JSON.parse(compiledCode.contracts[&#39;:Voting&#39;].interface)</span><br></pre></td></tr></table></figure></li>
+<li><p>获得知道abi的合约对象，和字节码信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; VotingContract &#x3D; web3.eth.contract(abiDefinition)</span><br><span class="line">&gt; byteCode &#x3D; compiledCode.contracts[&#39;:Voting&#39;].bytecode</span><br></pre></td></tr></table></figure></li>
+<li><p>用以上信息部署合约，需要传入构造函数参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    &gt; deployedContract &#x3D; VotingContract.new([&#39;Rama&#39;,&#39;Nick&#39;,&#39;Jose&#39;],&#123;data: byteCode, from: web3.eth.accounts[0], gas: 4700000&#125;)</span><br><span class="line">&gt; deployedContract.address</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取合约实例<br><code>contractInstance = VotingContract.at(deployedContract.address)</code></p>
 </li>
 </ol>
 </li>
 </ol>
 </li>
-<li>使用合约index.html时要修改index.js里的合约地址为自己自己合约实例地址</li>
+<li><p>使用实例调用合约接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&gt; contractInstance.totalVotesFor.call(&#39;Rama&#39;)</span><br><span class="line">	&#123; [String: &#39;0&#39;] s: 1, e: 0, c: [ 0 ] &#125;</span><br><span class="line">&gt; contractInstance.voteForCandidate(&#39;Rama&#39;, &#123;from: web3.eth.accounts[0]&#125;)</span><br><span class="line">&#39;0xdedc7ae544c3dde74ab5a0b07422c5a51b5240603d31074f5b75c0ebc786bf53&#39;</span><br><span class="line">&gt; contractInstance.voteForCandidate(&#39;Rama&#39;, &#123;from: web3.eth.accounts[0]&#125;)</span><br><span class="line">&#39;0x02c054d238038d68b65d55770fabfca592a5cf6590229ab91bbe7cd72da46de9&#39;</span><br><span class="line">&gt; contractInstance.voteForCandidate(&#39;Rama&#39;, &#123;from: web3.eth.accounts[0]&#125;)</span><br><span class="line">&#39;0x3da069a09577514f2baaa11bc3015a16edf26aad28dffbcd126bde2e71f2b76f&#39;</span><br><span class="line">&gt; contractInstance.totalVotesFor.call(&#39;Rama&#39;).toLocaleString()</span><br><span class="line">&#39;3&#39;</span><br><span class="line">  &#96;&#96;&#96;  </span><br><span class="line">5. 使用合约index.html时要修改index.js里的合约地址为自己自己合约实例地址  </span><br><span class="line">---  </span><br><span class="line"></span><br><span class="line">### 第二部分</span><br><span class="line">---</span><br><span class="line">### 第三部分</span><br><span class="line">#### 学习中遇到的新知识</span><br><span class="line">1. js中then（）的用法  </span><br><span class="line">then()方法是异步执行。</span><br><span class="line"></span><br><span class="line">意思是：就是当.then()前的方法执行完后再执行then()内部的程序，这样就避免了，数据没获取到等的问题。</span><br><span class="line"></span><br><span class="line">语法：promise.then(onCompleted, onRejected);</span><br><span class="line"></span><br><span class="line">参数</span><br><span class="line"></span><br><span class="line">promise必需。Promise 对象。</span><br><span class="line"></span><br><span class="line">onCompleted必需。承诺成功完成时要运行的履行处理程序函数。</span><br><span class="line"></span><br><span class="line">onRejected可选。承诺被拒绝时要运行的错误处理程序函数</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;javaScript </span><br><span class="line">navigator.mediaDevices.getUserMedia(constrains).then(</span><br><span class="line">            function (stream) &#123;</span><br><span class="line">                video.srcObject&#x3D;stream;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+<p>可以理解成navigator.mediaDevices.getUserMedia(constrains) 返回一个参数stream ，然后执行function功能<br>原文链接：<a href="https://blog.csdn.net/chengmo123/article/details/89281022" target="_blank" rel="noopener">https://blog.csdn.net/chengmo123/article/details/89281022</a></p>
+</li>
 </ol>
 
       
@@ -512,6 +566,10 @@
       <ul>
         
           <li>
+            <a href="/2020/03/31/truffle%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">truffle框架学习</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/15/%E5%85%A8%E6%A0%88%E6%8A%95%E7%A5%A8demo%E5%AD%A6%E4%B9%A0/">全栈投票demo学习</a>
           </li>
         
@@ -525,10 +583,6 @@
         
           <li>
             <a href="/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">dapp开发环境部署</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/20/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86/">以太坊以及账户创建和管理</a>
           </li>
         
       </ul>
