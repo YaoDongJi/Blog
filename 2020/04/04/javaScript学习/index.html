@@ -20,28 +20,34 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog of YaoDongJi">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="比较运算符 第一种是&#x3D;&#x3D;比较，它会自动转换数据类型再比较，很多时候，会得到非常诡异的结果；第二种是&#x3D;&#x3D;&#x3D;比较，它不会自动转换数据类型，如果数据类型不一致，返回false，如果一致，再比较。由于JavaScript这个设计缺陷，不要使用&#x3D;&#x3D;比较，始终坚持使用&#x3D;&#x3D;&#x3D;比较。  NaN这个特殊的Number与所有其他值都不相等，包括它自己，唯一能判断NaN的方法是通过isNaN()函数    对象 Jav">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaScript学习">
+<meta property="og:url" content="http://yoursite.com/2020/04/04/javaScript%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Blog of YaoDongJi">
+<meta property="og:description" content="比较运算符 第一种是&#x3D;&#x3D;比较，它会自动转换数据类型再比较，很多时候，会得到非常诡异的结果；第二种是&#x3D;&#x3D;&#x3D;比较，它不会自动转换数据类型，如果数据类型不一致，返回false，如果一致，再比较。由于JavaScript这个设计缺陷，不要使用&#x3D;&#x3D;比较，始终坚持使用&#x3D;&#x3D;&#x3D;比较。  NaN这个特殊的Number与所有其他值都不相等，包括它自己，唯一能判断NaN的方法是通过isNaN()函数    对象 Jav">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/images/pasted-33.png">
+<meta property="article:published_time" content="2020-04-04T01:22:11.000Z">
+<meta property="article:modified_time" content="2020-04-07T08:20:58.675Z">
 <meta property="article:author" content="YaoDongJi">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/pasted-33.png">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/04/04/javaScript%E5%AD%A6%E4%B9%A0/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Blog of YaoDongJi</title>
+  <title>javaScript学习 | Blog of YaoDongJi</title>
   
 
 
@@ -139,9 +145,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -157,10 +164,9 @@
       <meta itemprop="name" content="Blog of YaoDongJi">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/04/javaScript%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">javaScript学习</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          javaScript学习
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -190,7 +196,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><ol>
+        <h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><ol>
 <li><p>第一种是==比较，它会自动转换数据类型再比较，很多时候，会得到非常诡异的结果；第二种是===比较，它不会自动转换数据类型，如果数据类型不一致，返回false，如果一致，再比较。由于JavaScript这个设计缺陷，不要使用==比较，始终坚持使用===比较。</p>
 </li>
 <li><p>NaN这个特殊的Number与所有其他值都不相等，包括它自己，唯一能判断NaN的方法是通过isNaN()函数</p>
@@ -332,703 +338,30 @@ var Student = {<br> name: ‘Robot’,<br> height: 1.2,<br> run: function () {<p
 </li>
 </ol>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/31/truffle%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="YaoDongJi">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of YaoDongJi">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/31/truffle%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">truffle框架学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-31 18:29:13" itemprop="dateCreated datePublished" datetime="2020-03-31T18:29:13+08:00">2020-03-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-04 21:34:06" itemprop="dateModified" datetime="2020-04-04T21:34:06+08:00">2020-04-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>关键问题</p>
-<ol>
-<li>deployed API</li>
-<li>js中的promise是什么</li>
-<li>合约抽象是什么</li>
-<li>Mocha是什么<br>mocha是JavaScript的一种单元测试框架，既可以在浏览器环境下运行，也可以在Node.js环境下运行。使用mocha，我们就只需要专注于编写单元测试本身，然后，让mocha去自动运行所有的测试，并给出测试结果</li>
-<li>js学习<br><a href="https://www.liaoxuefeng.com/wiki/1022910821149312" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/1022910821149312</a></li>
-</ol>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/31/truffle%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" rel="prev" title="truffle框架学习">
+      <i class="fa fa-chevron-left"></i> truffle框架学习
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/%E5%85%A8%E6%A0%88%E6%8A%95%E7%A5%A8demo%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="YaoDongJi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of YaoDongJi">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/15/%E5%85%A8%E6%A0%88%E6%8A%95%E7%A5%A8demo%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">全栈投票demo学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-15 15:31:00" itemprop="dateCreated datePublished" datetime="2020-03-15T15:31:00+08:00">2020-03-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-06 16:34:10" itemprop="dateModified" datetime="2020-04-06T16:34:10+08:00">2020-04-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h3><p>链接 <a href="https://www.jianshu.com/p/b282d375e45e" target="_blank" rel="noopener">https://www.jianshu.com/p/b282d375e45e</a></p>
-<ol>
-<li><p>配置区块链本地运行环境，之前装过了python安装工具和web3，ganache_cli,安装命令 cnpm install ganache-cli <a href="mailto:web3@0.20.0">web3@0.20.0</a></p>
-</li>
-<li><p>项目架构<br><img src="/images/pasted-28.png" alt="upload successful">  </p>
-</li>
-<li><p>编译和部署一个合约的步骤</p>
-<ol>
-<li><p>在node环境下获得web3和solc实例  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mahesh@projectblockchain:~<span class="regexp">/hello_world_voting$ node</span></span><br><span class="line"><span class="regexp">&gt; Web3 = require('web3')</span></span><br><span class="line"><span class="regexp">&gt; web3 = new Web3(new 						Web3.providers.HttpProvider("http:/</span><span class="regexp">/localhost:8545"));</span></span><br></pre></td></tr></table></figure></li>
-<li><p>读取代码作为变量，solc示例编译产生一个contract对象（包含abi和字节码信息）  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; code &#x3D; fs.readFileSync(&#39;Voting.sol&#39;).toString()</span><br><span class="line">&gt; solc &#x3D; require(&#39;solc&#39;)</span><br><span class="line">&gt; compiledCode &#x3D; solc.compile(code)</span><br></pre></td></tr></table></figure></li>
-<li><p>创建合约对象  </p>
-<ol>
-<li><p>通过contract对象获取abi字符串变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; abiDefinition &#x3D; JSON.parse(compiledCode.contracts[&#39;:Voting&#39;].interface)</span><br></pre></td></tr></table></figure></li>
-<li><p>获得知道abi的合约对象，和字节码信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; VotingContract &#x3D; web3.eth.contract(abiDefinition)</span><br><span class="line">&gt; byteCode &#x3D; compiledCode.contracts[&#39;:Voting&#39;].bytecode</span><br></pre></td></tr></table></figure></li>
-<li><p>用以上信息部署合约，需要传入构造函数参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    &gt; deployedContract &#x3D; VotingContract.new([&#39;Rama&#39;,&#39;Nick&#39;,&#39;Jose&#39;],&#123;data: byteCode, from: web3.eth.accounts[0], gas: 4700000&#125;)</span><br><span class="line">&gt; deployedContract.address</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取合约实例<br><code>contractInstance = VotingContract.at(deployedContract.address)</code></p>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>使用实例调用合约接口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&gt; contractInstance.totalVotesFor.call(&#39;Rama&#39;)</span><br><span class="line">	&#123; [String: &#39;0&#39;] s: 1, e: 0, c: [ 0 ] &#125;</span><br><span class="line">&gt; contractInstance.voteForCandidate(&#39;Rama&#39;, &#123;from: web3.eth.accounts[0]&#125;)</span><br><span class="line">&#39;0xdedc7ae544c3dde74ab5a0b07422c5a51b5240603d31074f5b75c0ebc786bf53&#39;</span><br><span class="line">&gt; contractInstance.voteForCandidate(&#39;Rama&#39;, &#123;from: web3.eth.accounts[0]&#125;)</span><br><span class="line">&#39;0x02c054d238038d68b65d55770fabfca592a5cf6590229ab91bbe7cd72da46de9&#39;</span><br><span class="line">&gt; contractInstance.voteForCandidate(&#39;Rama&#39;, &#123;from: web3.eth.accounts[0]&#125;)</span><br><span class="line">&#39;0x3da069a09577514f2baaa11bc3015a16edf26aad28dffbcd126bde2e71f2b76f&#39;</span><br><span class="line">&gt; contractInstance.totalVotesFor.call(&#39;Rama&#39;).toLocaleString()</span><br><span class="line">&#39;3&#39;</span><br><span class="line">  &#96;&#96;&#96;  </span><br><span class="line">5. 使用合约index.html时要修改index.js里的合约地址为自己自己合约实例地址  </span><br><span class="line">---  </span><br><span class="line"></span><br><span class="line">### 第二部分</span><br><span class="line">---</span><br><span class="line">### 第三部分</span><br><span class="line">#### 学习中遇到的新知识</span><br><span class="line">1. js中then（）的用法  </span><br><span class="line">then()方法是异步执行。</span><br><span class="line"></span><br><span class="line">意思是：就是当.then()前的方法执行完后再执行then()内部的程序，这样就避免了，数据没获取到等的问题。</span><br><span class="line"></span><br><span class="line">语法：promise.then(onCompleted, onRejected);</span><br><span class="line"></span><br><span class="line">参数</span><br><span class="line"></span><br><span class="line">promise必需。Promise 对象。</span><br><span class="line"></span><br><span class="line">onCompleted必需。承诺成功完成时要运行的履行处理程序函数。</span><br><span class="line"></span><br><span class="line">onRejected可选。承诺被拒绝时要运行的错误处理程序函数</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;javaScript </span><br><span class="line">navigator.mediaDevices.getUserMedia(constrains).then(</span><br><span class="line">            function (stream) &#123;</span><br><span class="line">                video.srcObject&#x3D;stream;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
-<p>可以理解成navigator.mediaDevices.getUserMedia(constrains) 返回一个参数stream ，然后执行function功能<br>原文链接：<a href="https://blog.csdn.net/chengmo123/article/details/89281022" target="_blank" rel="noopener">https://blog.csdn.net/chengmo123/article/details/89281022</a></p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/%E4%B8%83%E5%A4%A9%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92%E5%85%BB%E6%88%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="YaoDongJi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of YaoDongJi">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/15/%E4%B8%83%E5%A4%A9%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92%E5%85%BB%E6%88%90/" class="post-title-link" itemprop="url">七天学习计划养成</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-15 10:42:28" itemprop="dateCreated datePublished" datetime="2020-03-15T10:42:28+08:00">2020-03-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-21 14:05:51" itemprop="dateModified" datetime="2020-03-21T14:05:51+08:00">2020-03-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="七天计划养成"><a href="#七天计划养成" class="headerlink" title="七天计划养成"></a>七天计划养成</h3><ol>
-<li><p>十天内打卡<strong>七天</strong></p>
-</li>
-<li><p>每天<strong>八点十分之前</strong>起床，晚上<strong>11：30</strong>之前睡觉</p>
-</li>
-<li><p>起床后天气好的话出去跑步，期间听一篇<strong>新概念英语，并试背，大概半个小时</strong></p>
-</li>
-<li><p>吃完饭后半小时内学习，十一点半之前<strong>学习1.5h</strong>以上，上午学习<strong>2h+</strong></p>
-</li>
-<li><p>下午<strong>两点</strong>之前开始学习,学习<strong>2.5h+</strong></p>
-</li>
-<li><p>下午或者晚上背雅思<strong>单词100个</strong>，大概0.5h</p>
-</li>
-<li><p>如果有其他事务可以适当调整各项时间，尽量保证<strong>起床睡觉和学习5h+时间</strong></p>
-</li>
-<li><p>晚上<strong>8：00-9：00跳绳1000+</strong>，或者其他运动</p>
-</li>
-<li><p><strong>每天记录打卡和时间详情</strong></p>
-</li>
-</ol>
-<hr>
-<hr>
-<h4 id="第一天-2020-3-15"><a href="#第一天-2020-3-15" class="headerlink" title="第一天 2020.3.15"></a>第一天 2020.3.15</h4><ol>
-<li>上午10：00-11：40，外加中午一组单词，有2h<br> 学习内容：  <ul>
-<li>看了一个投票DApp的示例论文，改论文代码并不完整，有些理论东西比较晦涩，故没有特别深入。  </li>
-<li>制定了七天学习计划，博客记录  </li>
-<li>背诵了两篇新概念英语</li>
-<li>背了四十个单词  </li>
-</ul>
-</li>
-<li>下午2：15开始学习  <ul>
-<li>2:15-3:00找了投票demo学习  </li>
-<li>3点到5点被喊去下地干活，也算是做了一些工作</li>
-<li>晚上背了40个单词<br>共计大约3h</li>
-</ul>
-</li>
-</ol>
-<ol start="3">
-<li>总结，共计5h达成，其他暂无</li>
-</ol>
-<h4 id="第二天2020-3-19"><a href="#第二天2020-3-19" class="headerlink" title="第二天2020.3.19"></a>第二天2020.3.19</h4><ol>
-<li>早上<strong>八点半起床</strong>，赶集回来十点，十点到十点半背了新概念英语二第四篇，并回顾了前三篇，之后打游戏11：40，11；40-12：40，学习了全栈投票DApp第一部分，共计1.5H</li>
-<li>下午3：10-5：50<strong>共计2h40min</strong></li>
-<li>晚上8点吃完饭打了一把游戏，8：30-9：30<strong>跳绳1000+</strong>，到10：00背了100个单词，然后记录今天共计40min  </li>
-<li>今日共计4h50min  </li>
-</ol>
-<h4 id="第三天2020-3-21"><a href="#第三天2020-3-21" class="headerlink" title="第三天2020.3.21"></a>第三天2020.3.21</h4><ol>
-<li>早上8:30起床，打了一上午游戏然后做饭吃饭</li>
-<li>下午2:00开始学习</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/09/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="YaoDongJi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of YaoDongJi">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/09/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-01-09 15:48:46" itemprop="dateCreated datePublished" datetime="2020-01-09T15:48:46+08:00">2020-01-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="YaoDongJi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of YaoDongJi">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/23/dapp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">dapp开发环境部署</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-23 11:23:10 / Modified: 21:36:10" itemprop="dateCreated datePublished" datetime="2019-12-23T11:23:10+08:00">2019-12-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1.安装Nodejs环境，选择对应的平台，并下载LTS版本。安装完成后，在终端输入下面命令查看，如果正常输出版本号，则安装成功<br>            <strong><code>node -v</code></strong>   </p>
-<p>2.安装truffle框架，输入如下命令安装<br>        <strong><code>npm install -g truffle</code></strong><br>3.安装Ganache，下载对应平台安装包安装即可。Ganache是一个图形化的以太坊私有链程序，打开后便在本地建立起一个以太坊私有链，方便快捷。启动Ganache后，会有10个默认账户，并都有100Eth，当然，这只是测试用的，因为在你的私有链上。安装完成后请开启Ganache，后面部署合约时会用到。<br>4.安装metamask通过链接<a href="https://www.jianshu.com/p/8a40195a745d下载chrome插件，发现被禁用，将文件格式改为rar再次解压即可" target="_blank" rel="noopener">https://www.jianshu.com/p/8a40195a745d下载chrome插件，发现被禁用，将文件格式改为rar再次解压即可</a>  </p>
-<h3 id="创建目录，编程初体验"><a href="#创建目录，编程初体验" class="headerlink" title="创建目录，编程初体验"></a>创建目录，编程初体验</h3><p>1.首先，我们创建一个目录。目录就叫GDesign（graduation design）<br>2.在当前文件夹下输入truffle命令，来unbox一个项目<br>    <strong><code>truffle unbox pet-shop</code></strong><br>3.用你的编辑器打开这个项目，我使用的是notepad++，文件夹介绍在图里。有一点需要说明下，migrations是部署合约的文件夹，通过js来部署(图中migrations的解释写错了，请忽略)。<br><img src="/images/pasted-16.png" alt="upload successful"><br>4.我们新建一个智能合约，叫Election.sol，并写上下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pragma solidity ^0.4.2; &#x2F;&#x2F;这句声明了我们的solidity版本</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;声明一个合约 contract是关键字，Election是合约名字，合约名字和文件名要一致</span><br><span class="line">contract Election &#123;</span><br><span class="line">    &#x2F;* 声明一个public 的string类型的状态变量(可以理解为成员变量) *&#x2F;</span><br><span class="line">    string public candidate;</span><br><span class="line">    &#x2F;* constractor 函数名和合约名一样的函数就是构造函数，与C++相似*&#x2F;</span><br><span class="line">    &#x2F;* 构造函数是public的，因为需要外部来调用 *&#x2F;</span><br><span class="line">    function Election() public&#123;</span><br><span class="line">        candidate &#x3D; &quot;Candidate 1&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>5.在终端中打开项目目录，输入下面的命令部署合约  </p>
-<figure class="highlight plain"><figcaption><span>migrate```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">6.部署后，输入truffle console，打开truffle终端，输入下面这行代码  </span><br><span class="line">&#96;&#96;&#96;Election.deployed().then(function(instance) &#123; app &#x3D; instance&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/pasted-17.png" alt="upload successful"><br>当我们声明candicate状态变量为public时，会自动生成同名的get函数来获取这个状态变量的值，我们通过创建的app对象访问candicate，便得到了candicate的值。此时，打开你的Ganache，你会发现有个账户的以太币减少了，这就是部署合约的开销。  </p>
-<p><img src="/images/pasted-18.png" alt="upload successful"></p>
-<h3 id="合约测试"><a href="#合约测试" class="headerlink" title="合约测试"></a>合约测试</h3><p>因为智能合约一旦部署，不可更改，合约的Bug也会随之在区块链上永垂不朽。如果要修复Bug，必须重新部署合约，这会极大影响用户体验，所以奋不顾身地测试合约也是必要的。测试文件可以是Solidity编写，也可以是JavaScript来写。我们先看看JavaScript如何写测试。<br>1.准备工作<br>我们需要用到mocha测试框架和chai断言库，通过下面的命令就能安装他们  </p>
-<figure class="highlight plain"><figcaption><span>npm install --global mocha  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install chai</span><br></pre></td></tr></table></figure>
-<p>2.写测试脚本<br>在test文件夹中创建一个election.js的测试脚本  </p>
-<p><img src="/images/pasted-19.png" alt="upload successful"><br>试脚本的代码如下，更多关于mocha测试框架和chai断言库的教程可以去网上搜搜</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var Election &#x3D; artifacts.require(&quot;.&#x2F;Election.sol&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 声明合约 第一个参数是段描述，描述你的测试，第二个参数是个函数</span><br><span class="line">&#x2F;&#x2F;函数中的it 是一个测试用例，一个contract可以包含多个it</span><br><span class="line">contract(&quot;Election&quot;, function(accounts)&#123;</span><br><span class="line">    it(&quot;init with two candidates&quot;, function(accounts)&#123;</span><br><span class="line">        return Election.deployed().then(function (instance)&#123;</span><br><span class="line">            return instance.candidatesCount();</span><br><span class="line">        &#125;).then(function(count)&#123;</span><br><span class="line">           assert.equal(count, 2);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>3.写好之后在终端中打开项目目录，输入truffle test，如果看到下面的输出，则测试通过  </p>
-<p><img src="/images/pasted-20.png" alt="upload successful"></p>
-<hr>
-<h3 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h3><ul>
-<li>truffle unbox时Error: connect ECONNREFUSED 151.101.228.133:443<br>解决连接github的某个网页被拒绝了。什么原因？网络配置有问题，和你连接的网络，或者你的网络的一些设置有关。<br>（换个网络就好了）<br>修改hosts文件：  </li>
-</ul>
-<p>Windows下：（这部分摘自<a href="https://blog.csdn.net/weixin_40089510/article/details/85936724）" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40089510/article/details/85936724）</a><br>找到这个路径C:\Windows\System32\drivers\etc，然后找到hosts文件（没有任何后缀的那个），然后修改内容，添加进github相关的所有ip。<br>从下面开始。<br>#127.0.0.1 gilisoft.com<br>#github<br>192.30.253.113 github.com<br>192.30.253.113 github.com<br>192.30.253.118 gist.github.com<br>192.30.253.119 gist.github.com</p>
-<p>GitHub Start<br>192.30.253.112 github.com<br>192.30.253.119 gist.github.com<br>151.101.100.133 assets-cdn.github.com<br>151.101.100.133 raw.githubusercontent.com<br>151.101.100.133 gist.githubusercontent.com<br>151.101.100.133 cloud.githubusercontent.com<br>151.101.100.133 camo.githubusercontent.com<br>151.101.100.133 avatars0.githubusercontent.com<br>151.101.100.133 avatars1.githubusercontent.com<br>151.101.100.133 avatars2.githubusercontent.com<br>151.101.100.133 avatars3.githubusercontent.com<br>151.101.100.133 avatars4.githubusercontent.com<br>151.101.100.133 avatars5.githubusercontent.com<br>151.101.100.133 avatars6.githubusercontent.com<br>151.101.100.133 avatars7.githubusercontent.com<br>151.101.100.133 avatars8.githubusercontent.com</p>
-<p>其实关键是要把你报错的那条ip加进去，比如我遇到的是151.101.192.133:443，那么我应该也把151.101.192.133加进去。<br>原文链接：<a href="https://blog.csdn.net/sinyusin/article/details/88776939" target="_blank" rel="noopener">https://blog.csdn.net/sinyusin/article/details/88776939</a></p>
-<hr>
-<h3 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h3><h4 id="Truffle，Ganache，Geth和Mist"><a href="#Truffle，Ganache，Geth和Mist" class="headerlink" title="Truffle，Ganache，Geth和Mist"></a>Truffle，Ganache，Geth和Mist</h4><ul>
-<li>Truffle：是以太坊的开发环境、测试框架和资产通道。换句话说，它可以帮助你开发、发布和测试智能合约等等。你可以阅读有关 Truffle 套件的文档（<a href="http://truffleframework.com/docs/），了解更多信息。" target="_blank" rel="noopener">http://truffleframework.com/docs/），了解更多信息。</a>  </li>
-<li>Ganache：以前叫作 TestRPC，如果你读过几个月前的教程的话，有可能他们在使用 TestRPC 的情境下配合使用了 Truffle，它在 TestRPC 和 Truffle 的集成后被重新命名为 Ganache。Ganache 的工作很简单：创建一个虚拟的以太坊区块链，并生成一些我们将在开发过程中用到的虚拟账号。  </li>
-<li>Mist：Mist 是一个分布式网络 apps 的浏览器，相当于是只针对 Dapps 的 Chrome 或 Firefox。目前来说，它仍然是不安全的，所以你还不能在不受信任的 dapp 中使用它。  </li>
-<li>以太坊钱包：它是 Mist 的一个版本，但只启动一个 dapp ——以太坊钱包（<a href="https://wallet.ethereum.org/）。Mist" target="_blank" rel="noopener">https://wallet.ethereum.org/）。Mist</a> 和以太坊钱包只是 UI（用户界面）前端，我们还需要一个将我们连接到以太坊区块链的核心程序（它可以是一个真正的以太坊区块链，也可以是一个测试版的）。  </li>
-<li>Geth：Geth 是把你连接到区块链的核心应用程序，它也可以启动一个新的区块链（在我们这个示例中，我们将创建一个本地测试网区块链），创建合约，挖掘以太币等。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/20/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="YaoDongJi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of YaoDongJi">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/20/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">以太坊以及账户创建和管理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-12-20 09:41:17" itemprop="dateCreated datePublished" datetime="2019-12-20T09:41:17+08:00">2019-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-22 11:09:31" itemprop="dateModified" datetime="2019-12-22T11:09:31+08:00">2019-12-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="客户端介绍和安装"><a href="#客户端介绍和安装" class="headerlink" title="客户端介绍和安装"></a>客户端介绍和安装</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p><strong>Mist</strong><br>是一个去中心化的分散的web3.0应用的浏览器。<br><strong>Ethereum Wallet</strong><br>一个只绑定了以太坊钱包应用的Mist浏览器，因为它只绑定了这一个应用：以太坊钱包。所以被<br>称作为“Ethereum Wallet”。<br>注：Mist = Ethereum Wallet + Web3 浏览器</p>
-<h4 id="安装问题"><a href="#安装问题" class="headerlink" title="安装问题"></a>安装问题</h4><p>网上国内镜像下载安装版，geth 运行不了，mist运行一直提示&emsp;请手动安装geth&emsp;，打开C:\Users\root\AppData\Roaming\Mist\binaries\Geth发现geth未能解压成功，解压成功后仍不能运行，网上找了另一个版本，并且自己建立一个unpacked文件夹，把geth.exe放进去，并且以兼容模式运行，此问题暂时解决。</p>
-<h4 id="安装提示"><a href="#安装提示" class="headerlink" title="安装提示"></a>安装提示</h4><p>更换默认的区块存储路径<br>mklink /j “C:\Users\ethereum\AppData\Roaming\Ethereum”“C:\Ethereum”<br>如果你有一个区块链数据已经同步完整的以太坊节点，那么你可以导出这节点的区块链数据，然后导入到您的一个新的以太坊节点。你可以命令geth –testnet export filename导出数据，然后使用geth –testnet import filename导入数据到新的节点。</p>
-<h3 id="以太坊账户创建和管理"><a href="#以太坊账户创建和管理" class="headerlink" title="以太坊账户创建和管理"></a>以太坊账户创建和管理</h3><h4 id="秘钥文件"><a href="#秘钥文件" class="headerlink" title="秘钥文件"></a>秘钥文件</h4><p>每一个账号都有一对密钥，一个私钥和一个公钥。账号和地址是一一对应的。账号被来自密钥的最后20个字节的地址索引着的。每一个私钥/地址对都被编码进一个密钥文件。密钥文件是一个json格式的文本文件，可以用任何的文本工具打开和编辑它。密钥文件的重要组成部分—你账号的私钥，是使用你在创建账号时输入的密码来加密保护的。密钥文件存储在你的以太坊客户端的keystore子目录中。确保定期备份你的key<br>文件！！<br> <strong>在创建账户之后，要注意：一定要记住你的密码和备份你的密钥文件！！！</strong></p>
-<h4 id="使用-geth-account-new"><a href="#使用-geth-account-new" class="headerlink" title="使用 geth account new"></a>使用 geth account new</h4><p> 使用以太坊命令控制台程序（geth ），那创建账号只需要在命令行里执行 geth account new 命令 即可。</p>
-<h4 id="备份账号"><a href="#备份账号" class="headerlink" title="备份账号"></a>备份账号</h4><p> 以太坊网络没有所谓“找回账户密码”的功能。所以一旦丢失账户或忘记密码，那将是一件无可挽回的事情，你将永远的失去你的账户，和你这账户中的所有以太币！<br>备份账户很简单：<br>C:\Users\你的账户\AppData\Roaming\Ethereum\ 中的“keystore”目录整个备份一遍，并且同时备份好你的账户密码。<br>下次，你只需要把你备份的“keystore”目录中的文件，复制到你的新的客户端对应的目录，你就可以在你的新客户端上操作你的账户了。</p>
-<h4 id="多重签名"><a href="#多重签名" class="headerlink" title="多重签名"></a>多重签名</h4><p>你可以使用以太坊钱包的多重签名来保护你账户中的余额。使用多重签名的好处是，当要从账户中提取较大额度的金额时，需要多个账户的共同认证才能成功提取。在创建一个多重签名的钱包前，你首先至少需要创建2个账户。<br>在以太坊钱包中创建账号很容易，只需要在 Accounts 选项卡，点击 ‘Add Account’。创建至少2个账号。<br>你现在需要向你的主账号添加不少于0.02的以太币（用于创建多重签名钱包的账号），这是创建多重签名钱包合约的交易费用。另外还需要至少1以太币，因为当前mist需要有足够的 ‘gas’来确保多重签名钱包合约能够正确的执行交易。所以一开始总共需要1.02的以太币。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E4%BB%8B%E7%BB%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="YaoDongJi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of YaoDongJi">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">区块链的介绍</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-12-18 22:24:07" itemprop="dateCreated datePublished" datetime="2019-12-18T22:24:07+08:00">2019-12-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-19 19:53:44" itemprop="dateModified" datetime="2019-12-19T19:53:44+08:00">2019-12-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="比特币"><a href="#比特币" class="headerlink" title="比特币"></a>比特币</h2><h3 id="比特币概述"><a href="#比特币概述" class="headerlink" title="比特币概述"></a>比特币概述</h3><p>去中心化的货币由中本聪在实践中首次得到实现，通过使用公共密钥密码来管理所有权，并通过一种一致性算法来跟踪货币的持有者，这种算法被称为“_工作证明_”。（为它同时解决了 2 个问题。首先，它提供了一种简单的、有节制的有效的共识算法，允许网络中的节点一起同意比特币总帐状态的一组更。其次，它提供了一种机制，允许任何节点自由进入共识的处理进程，从而解决了谁来影响共识的政治难题，同时阻止女巫攻击）</p>
-<h3 id="比特币一个状态转移系统"><a href="#比特币一个状态转移系统" class="headerlink" title="比特币一个状态转移系统"></a>比特币一个状态转移系统</h3><p><img src="/images/pasted-10.png" alt="upload successful"></p>
-<p>比特币可以被看作为一个状态转移的系统, 在这个系统里,有一个包含了现在所有已存在的比特币的持有者的状态，并且有一个“状态转移函数”可以使用一<br>个状态和一个交易来产生一个新的状态 </p>
-<p><strong>//使用一个状态和一个交易才生一个新状态，或者返回错误</strong></p>
-<p><strong>“状态”</strong> 在比特币中是指所有的已经被挖出的但是还没消费的硬币的集合 (技术上, “没有被花 掉的交易的产出(unspent transaction outputs)” 或 UTXO) ，每个 UTXO 都有一个面值和一个持有者 (持有者是由 20 个字节组成的地址，其本质是一个加密的公钥). 一个交易包含了一个或多个输入，每一个输入都包含了对一个已存在的 UTXO 的引用，和用持有者的地址所关联着的私钥来产生的一个加密签名, 并且会产生一个或多个输出, 每一个输出包含一个用于添加到状态的新的 UTXO。<br>这状态转移函数 APPLY(S,TX) -&gt; S’ 可以被大概的定义如下: </p>
-<ol>
-<li>在 TX 中的每个输入：<br>o 如果被引用的 UTXO 不在 S 里，返回一个错误.<br>o 如果提供的签名和 UTXO 的所有者匹配不上, 返回一个错误. </li>
-<li>如果所有的输入的 UTXO 的面值的和少于所有输出的 UTXO 的面值的和，返回一个错误. </li>
-<li>返回一个所有输入的 UTXO 都被移除的，所有输出的 UTXO 都被加进的新的 S’ .</li>
-</ol>
-<h3 id="挖矿"><a href="#挖矿" class="headerlink" title="挖矿"></a>挖矿</h3><p>如果任何交易，它的总的输入 的面值比总的输出要高，这一差额会作为“交易费用”转给矿工。顺便提一下，对矿工的奖励是比特币发行的唯一途径，创世状态中并没有比特币<br>需要把状态转移系统和一致性系统结合起来，以确保每个人都 同意这交易的顺序。比特币的去中心化的一致性处理进程要求网络中的节点连续不断的去尝试对交易进行打包，这些被打成的包就称为<strong>“区块”</strong>。 这个网络会故意的每隔 10 分钟左右就创建一个区块, 每一个区块里都包含一个时间戳，一个随机数，一个对上一个区块的引用 ，和从上一个区块开始的所有交易的列表。随着时间的推移，这会创建一个持久的，不断增长的区块链，这个区块链不断的被更新，使其始终代表着最新的比特币总账的状态。 </p>
-<p><strong>验证一个区块是否有效的算法如下</strong></p>
-<ol>
-<li>检查其引用的上一个区块是否存在并且有效. </li>
-<li>检查这个区块的时间戳是否大于上一个区块的时间戳 并且小于 2 小时之内 </li>
-<li>检查这区块上的工作证明是否有效. </li>
-<li>让 S[0] 成为上一个区块的最末端的状态. </li>
-<li>假设 TX 是这个区块的交易列表，且有 n 个交易。 做 for 循环，把 i 从 0 加到到 n-1， 设<br>置 S[i+1] = APPLY(S[i],TX[i]) 如果任何一个应用(APPLY)返回错误，则退出并且返回。 </li>
-<li>返回 true,并且把 S[n] 设置成这个区块最末端的状态。 </li>
-</ol>
-<h3 id="工作证明"><a href="#工作证明" class="headerlink" title="工作证明"></a>工作证明</h3><p>工作证明” 这一明确的条件就是每一个区块的 2 次 SHA256 哈希值, 它作为一个 256 位的数字,必须小于一个动态调整的目标值<br>因为 SHA256 被设计成一个完全不可预 测的伪随机函数, 这创建一个有效区块的唯一的方法只有是不断的尝试和出错， 不断对随机数进行递增，然后查看新的哈希值是否匹配。</p>
-<h3 id="默克尔树-Merkle-Trees"><a href="#默克尔树-Merkle-Trees" class="headerlink" title="默克尔树(Merkle Trees)"></a>默克尔树(Merkle Trees)</h3><p><img src="/images/pasted-11.png" alt="upload successful"></p>
-<p>默克尔树是一 种二叉树，包含了一组节点，它们的含有基础信息的树根有大量的叶子节点，一组中间节点，每一 个节点都是它的 2 个子节点的哈希，然后，最终的一个根节点，也是由它的 2 个子节点的哈希形成，代表着这树的“顶端”。 这个默克尔树的目的是允许在一个区块中的数据能够被零散的传递:<br>一个节点只能从一个源来下载一个区块的头信息，树的一小部分关联着另一个源 ，并且任然可以保证所有的数据都是正确的。之所以这样做行得通，是因为哈希值都是向上传导的:</p>
-<h3 id="山寨区块链应用"><a href="#山寨区块链应用" class="headerlink" title="山寨区块链应用"></a>山寨区块链应用</h3><p>有 2 中构建共识的方法：一是构建一个独立的网络，二是在比特币之上建立一个 协议 </p>
-<h2 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h2><p>以太坊的目的是创建一种去中心化应用的协议，提供一套对大量的去中心化应用程序非常有用的新方案，<strong>特别强调快速开发，对小的和少数人使用的应用也非常安全（小而使用人少的应用容易被51%攻破），以及不同的应用程序之间能够有效的互动。</strong></p>
-<h3 id="以太坊虚拟机"><a href="#以太坊虚拟机" class="headerlink" title="以太坊虚拟机"></a>以太坊虚拟机</h3><p>以太坊是一系列协议，其核心就是一个以太坊虚拟机，能执行遵守协议的任何复杂的代 码。以太坊虚拟机是图灵完备的，开发者可以在虚拟机上使用像 javascript，python 这样的友好编程语言来创建应用。和任何的区块链一样，以太坊包含了一个点对点的网络协议。这以太坊区块链是被链接着这个网络的各个节点维护和更新的。网络中的各个节点的虚拟机都执行相同的指令来共同维护区块数据库，因为这个原因，以太坊有时候被人称为 &nbsp;&nbsp;&nbsp;<strong>“世界计算机”</strong>&nbsp;。 </p>
-<h3 id="以太坊账户"><a href="#以太坊账户" class="headerlink" title="以太坊账户"></a>以太坊账户</h3><p>以太坊的基本单元是账号。每一个账户都有一个 20 个字节长度的地址 。以太坊区块链跟踪每一个 账号的状态，区块链上所有状态的转移都是账户之间的令牌（令牌即以太币）和信息的转移。以太 坊有 2 种账户类型<br><strong>外部账号</strong>，简称 EOA,是由私钥来控制的。<br><strong>合约帐户</strong>,由合约代码来控制,且只能由一个 EOA 账号来操作<br>最基本的区别在于，用户掌握着 EOA 账号，因为用户掌握着控制 EOA 账号的<br>私钥。而合约账号由内部程序代码来控制的</p>
-<p>一个以太坊的账户包含下面 4 个字段:<br>• 随机数, 一个计数器，用以确保每个交易都只会被处理一次<br>• 账户当前的以太币额度<br>• 账户的合约代码, 如果有的话<br>• 这个账户的 存储 (默认空)<br>外部拥有的账户没有代码，用户可以通过一个外部账户来创建和签名一个交易来送一个消息；合约账户中，每次当这个合 约收到一个消息的时候，它的代码就会被激活，允许它读取这个消息，并且写入到内部存储中，然后按照一定顺序发送其他的消息或创建合约等。 </p>
-<h3 id="消息和交易"><a href="#消息和交易" class="headerlink" title="消息和交易"></a>消息和交易</h3><p>名词“交易”在以太坊中是指签名的数据包，这个数据包中存储了从外部账户发送的消息，交易包 含以下内容:<br>• 消息的接收者<br>• 一个可以识别发送者的签名<br>• 发送方给接收方的以太币的数量<br>• 一个可选的数据字段<br>• 一个 STARTGAS 值, 表示执行这个交易允许消耗的最大计算步骤<br>• 一个 GASPRICE 值, 表示发送方的每个计算步骤的费用  </p>
-<h3 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h3><p><img src="/images/pasted-12.png" alt="upload successful"></p>
-<h4 id="以太坊状态转移函数"><a href="#以太坊状态转移函数" class="headerlink" title="以太坊状态转移函数"></a>以太坊状态转移函数</h4><p><img src="/images/pasted-13.png" alt="upload successful"></p>
-<h3 id="区块链和挖矿"><a href="#区块链和挖矿" class="headerlink" title="区块链和挖矿"></a>区块链和挖矿</h3><p><img src="/images/pasted-14.png" alt="upload successful"></p>
-<hr>
-<hr>
-<h2 id="学习过程中学习到的一些零碎知识"><a href="#学习过程中学习到的一些零碎知识" class="headerlink" title="学习过程中学习到的一些零碎知识"></a>学习过程中学习到的一些零碎知识</h2><h3 id="DS-Store-是什么"><a href="#DS-Store-是什么" class="headerlink" title=".DS_Store 是什么"></a>.DS_Store 是什么</h3><p>.DS_Store(英文全称 Desktop Services Store)是一种由苹果公司的Mac OS X操作系统所创造的隐藏文件，目的在于存贮目录的自定义属性，例如文件们的图标位置或者是背景色的选择。相当于 Windows 下的 desktop.ini。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/13/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8GitHub-hexo-%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="YaoDongJi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of YaoDongJi">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/13/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8GitHub-hexo-%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">关于使用GitHub+hexo 写博客的环境配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-12-13 16:35:25" itemprop="dateCreated datePublished" datetime="2019-12-13T16:35:25+08:00">2019-12-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-19 18:54:34" itemprop="dateModified" datetime="2019-12-19T18:54:34+08:00">2019-12-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="如何受用GitHub写博客"><a href="#如何受用GitHub写博客" class="headerlink" title="如何受用GitHub写博客"></a>如何受用GitHub写博客</h5><p><a href="https://www.cnblogs.com/visugar/p/6821777.html" target="_blank" rel="noopener">https://www.cnblogs.com/visugar/p/6821777.html</a>  </p>
-<h5 id="验证Node和npm是否安装成功"><a href="#验证Node和npm是否安装成功" class="headerlink" title="验证Node和npm是否安装成功"></a>验证Node和npm是否安装成功</h5><p>Node -v npm -v（-v命令查看安装版本，查看到安装版本即为安装成功） </p>
-<h5 id="安装hexo的时候可能会遇到问题："><a href="#安装hexo的时候可能会遇到问题：" class="headerlink" title="安装hexo的时候可能会遇到问题："></a>安装hexo的时候可能会遇到问题：</h5><p><a href="https://www.jianshu.com/p/f3e1662ca34f" target="_blank" rel="noopener">https://www.jianshu.com/p/f3e1662ca34f</a>  </p>
-<h5 id="Hexo的使用"><a href="#Hexo的使用" class="headerlink" title="Hexo的使用"></a>Hexo的使用</h5><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a>  </p>
-<h5 id="关于hexo-admin粘贴图片不行的修复"><a href="#关于hexo-admin粘贴图片不行的修复" class="headerlink" title="关于hexo -admin粘贴图片不行的修复"></a>关于hexo -admin粘贴图片不行的修复</h5><p><a href="https://blog.csdn.net/nineya_com/article/details/103384546" target="_blank" rel="noopener">https://blog.csdn.net/nineya_com/article/details/103384546</a>  </p>
-<h5 id="关于hexo的使用"><a href="#关于hexo的使用" class="headerlink" title="关于hexo的使用"></a>关于hexo的使用</h5><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/index.html</a>  </p>
-<h5 id="Hexo下的Markdown语法"><a href="#Hexo下的Markdown语法" class="headerlink" title="Hexo下的Markdown语法"></a>Hexo下的Markdown语法</h5><p><a href="https://www.runoob.com/markdown/md-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/markdown/md-tutorial.html</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -1081,6 +414,7 @@ var Student = {<br> name: ‘Robot’,<br> height: 1.2,<br> run: function () {<p
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#比较运算符"><span class="nav-number">1.</span> <span class="nav-text">比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">2.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strict模式"><span class="nav-number">3.</span> <span class="nav-text">strict模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包"><span class="nav-number">4.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON"><span class="nav-number">5.</span> <span class="nav-text">JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安全限制"><span class="nav-number">5.1.</span> <span class="nav-text">安全限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS"><span class="nav-number">5.2.</span> <span class="nav-text">CORS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JQuery"><span class="nav-number">6.</span> <span class="nav-text">JQuery</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
