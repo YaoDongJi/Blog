@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/images/pasted-57.png">
 <meta property="article:published_time" content="2020-07-09T01:40:56.000Z">
-<meta property="article:modified_time" content="2020-07-13T06:46:12.661Z">
+<meta property="article:modified_time" content="2020-07-14T01:49:01.161Z">
 <meta property="article:author" content="YaoDongJi">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/pasted-57.png">
@@ -182,7 +182,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-13 14:46:12" itemprop="dateModified" datetime="2020-07-13T14:46:12+08:00">2020-07-13</time>
+                <time title="Modified: 2020-07-14 09:49:01" itemprop="dateModified" datetime="2020-07-14T09:49:01+08:00">2020-07-14</time>
               </span>
 
           
@@ -218,8 +218,13 @@
 <h5 id="关于ssm配置文件的详解"><a href="#关于ssm配置文件的详解" class="headerlink" title="关于ssm配置文件的详解"></a>关于ssm配置文件的详解</h5><p><a href="https://blog.csdn.net/wuyjcsdn/article/details/60874128" target="_blank" rel="noopener">https://blog.csdn.net/wuyjcsdn/article/details/60874128</a></p>
 <h5 id="对sqlSessionFactory和sqlSession的理解"><a href="#对sqlSessionFactory和sqlSession的理解" class="headerlink" title="对sqlSessionFactory和sqlSession的理解"></a>对sqlSessionFactory和sqlSession的理解</h5><p><a href="https://blog.csdn.net/u013412772/article/details/73648537" target="_blank" rel="noopener">https://blog.csdn.net/u013412772/article/details/73648537</a></p>
 <h5 id="maven-ssm-demo"><a href="#maven-ssm-demo" class="headerlink" title="maven+ssm demo"></a>maven+ssm demo</h5><p><a href="https://blog.csdn.net/donggua3694857/article/details/51874011" target="_blank" rel="noopener">https://blog.csdn.net/donggua3694857/article/details/51874011</a></p>
-<h5 id="ssm框架中对spring-mvc的过程理解"><a href="#ssm框架中对spring-mvc的过程理解" class="headerlink" title="ssm框架中对spring mvc的过程理解"></a>ssm框架中对spring mvc的过程理解</h5><p><a href="https://www.cnblogs.com/dssjustdoit/articles/9398580.html" target="_blank" rel="noopener">https://www.cnblogs.com/dssjustdoit/articles/9398580.html</a>  </p>
-
+<h5 id="ssm框架中对spring-mvc的过程理解"><a href="#ssm框架中对spring-mvc的过程理解" class="headerlink" title="ssm框架中对spring mvc的过程理解"></a>ssm框架中对spring mvc的过程理解</h5><p><a href="https://www.cnblogs.com/dssjustdoit/articles/9398580.html" target="_blank" rel="noopener">https://www.cnblogs.com/dssjustdoit/articles/9398580.html</a></p>
+<h5 id="loushang框架中自动生成的overlays文件夹原理解释"><a href="#loushang框架中自动生成的overlays文件夹原理解释" class="headerlink" title="loushang框架中自动生成的overlays文件夹原理解释"></a>loushang框架中自动生成的overlays文件夹原理解释</h5><p><a href="https://blog.csdn.net/u010154380/article/details/70941662" target="_blank" rel="noopener">https://blog.csdn.net/u010154380/article/details/70941662</a></p>
+<h5 id="maven中dependency和plugin的区别"><a href="#maven中dependency和plugin的区别" class="headerlink" title="maven中dependency和plugin的区别"></a>maven中dependency和plugin的区别</h5><ul>
+<li>dependency引入的东西是你代码编译/运行时所需要的东西，项目打包后这些东西基本都在。<br>如：JSON工具包GSON（com.google.code.gson），不仅开发时要用，项目运行时也要用，就需要打包进项目中；<br>而像 javax.servlet-api 这种由容器实现的接口，运行时调用的是容器的具体实现，开发时它的引入范围应该是编译（<scope>provided</scope>），不会被打包进项目。    </li>
+<li>plugin引入的东西，如它的字面意思一样，是插件，作为开发/编译/打包时的一种辅助工具，一般不会打包进项目中。<br>如：使用 maven-source-plugin 插件将API包的源码一起打包，方便发布至Maven仓库，而这个插件不会在打包后的项目中出现 </li>
+</ul>
+<h5 id="maven内部运行原理解析"><a href="#maven内部运行原理解析" class="headerlink" title="maven内部运行原理解析"></a>maven内部运行原理解析</h5>
     </div>
 
     
@@ -296,7 +301,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Luoshang框架概述"><span class="nav-number">1.</span> <span class="nav-text">Luoshang框架概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo学习"><span class="nav-number">2.</span> <span class="nav-text">Demo学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序结构"><span class="nav-number">2.1.</span> <span class="nav-text">程序结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据持久层"><span class="nav-number">2.1.1.</span> <span class="nav-text">数据持久层</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loushang项目运行"><span class="nav-number">2.2.</span> <span class="nav-text">loushang项目运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">2.3.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是web组件"><span class="nav-number">2.3.1.</span> <span class="nav-text">什么是web组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于ssm配置文件的详解"><span class="nav-number">2.3.2.</span> <span class="nav-text">关于ssm配置文件的详解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对sqlSessionFactory和sqlSession的理解"><span class="nav-number">2.3.3.</span> <span class="nav-text">对sqlSessionFactory和sqlSession的理解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven-ssm-demo"><span class="nav-number">2.3.4.</span> <span class="nav-text">maven+ssm demo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ssm框架中对spring-mvc的过程理解"><span class="nav-number">2.3.5.</span> <span class="nav-text">ssm框架中对spring mvc的过程理解</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Luoshang框架概述"><span class="nav-number">1.</span> <span class="nav-text">Luoshang框架概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo学习"><span class="nav-number">2.</span> <span class="nav-text">Demo学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序结构"><span class="nav-number">2.1.</span> <span class="nav-text">程序结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据持久层"><span class="nav-number">2.1.1.</span> <span class="nav-text">数据持久层</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loushang项目运行"><span class="nav-number">2.2.</span> <span class="nav-text">loushang项目运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">2.3.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是web组件"><span class="nav-number">2.3.1.</span> <span class="nav-text">什么是web组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于ssm配置文件的详解"><span class="nav-number">2.3.2.</span> <span class="nav-text">关于ssm配置文件的详解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对sqlSessionFactory和sqlSession的理解"><span class="nav-number">2.3.3.</span> <span class="nav-text">对sqlSessionFactory和sqlSession的理解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven-ssm-demo"><span class="nav-number">2.3.4.</span> <span class="nav-text">maven+ssm demo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ssm框架中对spring-mvc的过程理解"><span class="nav-number">2.3.5.</span> <span class="nav-text">ssm框架中对spring mvc的过程理解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#loushang框架中自动生成的overlays文件夹原理解释"><span class="nav-number">2.3.6.</span> <span class="nav-text">loushang框架中自动生成的overlays文件夹原理解释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven中dependency和plugin的区别"><span class="nav-number">2.3.7.</span> <span class="nav-text">maven中dependency和plugin的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven内部运行原理解析"><span class="nav-number">2.3.8.</span> <span class="nav-text">maven内部运行原理解析</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
