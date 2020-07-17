@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/images/pasted-57.png">
 <meta property="article:published_time" content="2020-07-09T01:40:56.000Z">
-<meta property="article:modified_time" content="2020-07-14T01:49:01.161Z">
+<meta property="article:modified_time" content="2020-07-14T07:03:05.322Z">
 <meta property="article:author" content="YaoDongJi">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/pasted-57.png">
@@ -182,7 +182,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-14 09:49:01" itemprop="dateModified" datetime="2020-07-14T09:49:01+08:00">2020-07-14</time>
+                <time title="Modified: 2020-07-14 15:03:05" itemprop="dateModified" datetime="2020-07-14T15:03:05+08:00">2020-07-14</time>
               </span>
 
           
@@ -211,7 +211,7 @@
 <li>MyBatis配置文件：定义dao扫描文件  </li>
 </ul>
 <h4 id="loushang项目运行"><a href="#loushang项目运行" class="headerlink" title="loushang项目运行"></a>loushang项目运行</h4><ol>
-<li>Q1：显示从pom文件里声明的仓库找不到两个依赖<br>A1：将仓库url改为最新的url后解决  </li>
+<li>Q1：显示从pom文件里声明的仓库找不到两个依赖<br>A1：将仓库url改为最新的url后解决<url><a href="http://172.22.4.53:8081/nexus/content/groups/public/" target="_blank" rel="noopener">http://172.22.4.53:8081/nexus/content/groups/public/</a></url></li>
 <li>Q2：登录不上demo用户<br>A2： 发现数据库配置不对，启动本地数据库，建立testdb库，修改数据库url和驱动，在pom文件中加入mysql驱动依赖，根据手册中连接初始化数据库后登录成功。  </li>
 </ol>
 <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><h5 id="什么是web组件"><a href="#什么是web组件" class="headerlink" title="什么是web组件"></a>什么是web组件</h5><p>比较形象和诙谐的解释<a href="https://blog.csdn.net/weixin_33717117/article/details/85988052" target="_blank" rel="noopener">https://blog.csdn.net/weixin_33717117/article/details/85988052</a></p>
@@ -224,7 +224,9 @@
 <li>dependency引入的东西是你代码编译/运行时所需要的东西，项目打包后这些东西基本都在。<br>如：JSON工具包GSON（com.google.code.gson），不仅开发时要用，项目运行时也要用，就需要打包进项目中；<br>而像 javax.servlet-api 这种由容器实现的接口，运行时调用的是容器的具体实现，开发时它的引入范围应该是编译（<scope>provided</scope>），不会被打包进项目。    </li>
 <li>plugin引入的东西，如它的字面意思一样，是插件，作为开发/编译/打包时的一种辅助工具，一般不会打包进项目中。<br>如：使用 maven-source-plugin 插件将API包的源码一起打包，方便发布至Maven仓库，而这个插件不会在打包后的项目中出现 </li>
 </ul>
-<h5 id="maven内部运行原理解析"><a href="#maven内部运行原理解析" class="headerlink" title="maven内部运行原理解析"></a>maven内部运行原理解析</h5>
+<h5 id="maven内部运行原理解析"><a href="#maven内部运行原理解析" class="headerlink" title="maven内部运行原理解析"></a>maven内部运行原理解析</h5><p>思维导图：<a href="https://kdocs.cn/l/sehElquRN" target="_blank" rel="noopener">https://kdocs.cn/l/sehElquRN</a><br>[金山文档] maven运行原理.pof<br><a href="https://www.jianshu.com/p/0fb5e3fb704d" target="_blank" rel="noopener">https://www.jianshu.com/p/0fb5e3fb704d</a><br><a href="https://www.jianshu.com/p/2f7080a4858c" target="_blank" rel="noopener">https://www.jianshu.com/p/2f7080a4858c</a></p>
+<h5 id="loushang框架示例项目中j-bsp-security-check的了解"><a href="#loushang框架示例项目中j-bsp-security-check的了解" class="headerlink" title="loushang框架示例项目中j_bsp_security_check的了解"></a>loushang框架示例项目中j_bsp_security_check的了解</h5><p><a href="https://blog.csdn.net/weixin_34216196/article/details/92248847?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/weixin_34216196/article/details/92248847?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a><br>配置认证方式为form, 指定登陆页面login.jsp和登陆失败页面loginErr.jsp。有请求受保护资源protect.wss ，容器就踢回到login.jsp, 输入用户名和密码提交给j_security_check，容器进行安全认证，方式是用户指定好的，一般有ldap或其他方式，认证成功后，马上进入到用户输入的受保护资源protect.wss，认证失败则进入loginErr.jsp。</p>
+
     </div>
 
     
@@ -301,7 +303,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Luoshang框架概述"><span class="nav-number">1.</span> <span class="nav-text">Luoshang框架概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo学习"><span class="nav-number">2.</span> <span class="nav-text">Demo学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序结构"><span class="nav-number">2.1.</span> <span class="nav-text">程序结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据持久层"><span class="nav-number">2.1.1.</span> <span class="nav-text">数据持久层</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loushang项目运行"><span class="nav-number">2.2.</span> <span class="nav-text">loushang项目运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">2.3.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是web组件"><span class="nav-number">2.3.1.</span> <span class="nav-text">什么是web组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于ssm配置文件的详解"><span class="nav-number">2.3.2.</span> <span class="nav-text">关于ssm配置文件的详解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对sqlSessionFactory和sqlSession的理解"><span class="nav-number">2.3.3.</span> <span class="nav-text">对sqlSessionFactory和sqlSession的理解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven-ssm-demo"><span class="nav-number">2.3.4.</span> <span class="nav-text">maven+ssm demo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ssm框架中对spring-mvc的过程理解"><span class="nav-number">2.3.5.</span> <span class="nav-text">ssm框架中对spring mvc的过程理解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#loushang框架中自动生成的overlays文件夹原理解释"><span class="nav-number">2.3.6.</span> <span class="nav-text">loushang框架中自动生成的overlays文件夹原理解释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven中dependency和plugin的区别"><span class="nav-number">2.3.7.</span> <span class="nav-text">maven中dependency和plugin的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven内部运行原理解析"><span class="nav-number">2.3.8.</span> <span class="nav-text">maven内部运行原理解析</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Luoshang框架概述"><span class="nav-number">1.</span> <span class="nav-text">Luoshang框架概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo学习"><span class="nav-number">2.</span> <span class="nav-text">Demo学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序结构"><span class="nav-number">2.1.</span> <span class="nav-text">程序结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据持久层"><span class="nav-number">2.1.1.</span> <span class="nav-text">数据持久层</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loushang项目运行"><span class="nav-number">2.2.</span> <span class="nav-text">loushang项目运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">2.3.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是web组件"><span class="nav-number">2.3.1.</span> <span class="nav-text">什么是web组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于ssm配置文件的详解"><span class="nav-number">2.3.2.</span> <span class="nav-text">关于ssm配置文件的详解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对sqlSessionFactory和sqlSession的理解"><span class="nav-number">2.3.3.</span> <span class="nav-text">对sqlSessionFactory和sqlSession的理解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven-ssm-demo"><span class="nav-number">2.3.4.</span> <span class="nav-text">maven+ssm demo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ssm框架中对spring-mvc的过程理解"><span class="nav-number">2.3.5.</span> <span class="nav-text">ssm框架中对spring mvc的过程理解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#loushang框架中自动生成的overlays文件夹原理解释"><span class="nav-number">2.3.6.</span> <span class="nav-text">loushang框架中自动生成的overlays文件夹原理解释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven中dependency和plugin的区别"><span class="nav-number">2.3.7.</span> <span class="nav-text">maven中dependency和plugin的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#maven内部运行原理解析"><span class="nav-number">2.3.8.</span> <span class="nav-text">maven内部运行原理解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#loushang框架示例项目中j-bsp-security-check的了解"><span class="nav-number">2.3.9.</span> <span class="nav-text">loushang框架示例项目中j_bsp_security_check的了解</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
