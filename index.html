@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-17 15:15:19" itemprop="dateModified" datetime="2020-07-17T15:15:19+08:00">2020-07-17</time>
+                <time title="Modified: 2020-07-17 15:18:41" itemprop="dateModified" datetime="2020-07-17T15:18:41+08:00">2020-07-17</time>
               </span>
 
           
@@ -220,11 +220,20 @@
 <li>GenericServlet-&gt;getServletContext()</li>
 <li>ServletConfig-&gt;getServletContext()</li>
 <li>HttpSession-&gt;getServletContext()</li>
-<li>FilterConfig-&gt;getServletContext()</li>
+<li>FilterConfig-&gt;getServletContext()<h5 id="servlet如何运行"><a href="#servlet如何运行" class="headerlink" title="servlet如何运行"></a>servlet如何运行</h5></li>
 </ul>
 </li>
 </ul>
-<h4 id="常见Http错误类型"><a href="#常见Http错误类型" class="headerlink" title="常见Http错误类型"></a>常见Http错误类型</h4><ol>
+<ol>
+<li>浏览器根据IP建立与web容器的连接</li>
+<li>浏览器请求数据 打包</li>
+<li>容器解析请求数据包，封装对象</li>
+<li>容器根据对象路径创建servlet对象</li>
+<li>容器调用servlet中的service方法</li>
+<li>容器将响应内容打包发送给浏览器</li>
+<li>浏览器解析容器发送来的数据并展示页面</li>
+</ol>
+<h5 id="常见Http错误类型"><a href="#常见Http错误类型" class="headerlink" title="常见Http错误类型"></a>常见Http错误类型</h5><ol>
 <li><p>404 ：Web服务器找不到对应资源<br>常见原因：</p>
 <ul>
 <li>地址错误</li>
@@ -256,18 +265,31 @@
 <h5 id="响应数据包组成"><a href="#响应数据包组成" class="headerlink" title="响应数据包组成"></a>响应数据包组成</h5><ul>
 <li>状态行：协议类型+协议版本+状态码+状态描述</li>
 <li>消息头：Web服务器返回一些消息头给浏览器，告诉浏览器返回数据类型和字符集</li>
-<li>实体内容：程序处理结果</li>
+<li>实体内容：程序处理结果<h5 id="常见Http错误类型-1"><a href="#常见Http错误类型-1" class="headerlink" title="常见Http错误类型"></a>常见Http错误类型</h5></li>
 </ul>
-<h4 id="servlet如何处理HTTP协议"><a href="#servlet如何处理HTTP协议" class="headerlink" title="servlet如何处理HTTP协议"></a>servlet如何处理HTTP协议</h4><p>当web容器收到一个http请求时，通信数据由web容器负责封装和提供，这些信息被解释为HttpServerRequest和HttpServerResponse<br>HttpServerRequest：读取和写入http请求数据，取得和设置cookies，取得路径信息，标志HTTP会话，请求转发。<br>HttpServerResponse：设置对客户端的输出内容，设置状态响应码，解码方式，设置cookies，实现重定向。</p>
-<h4 id="servlet如何运行"><a href="#servlet如何运行" class="headerlink" title="servlet如何运行"></a>servlet如何运行</h4><ol>
-<li>浏览器根据IP建立与web容器的连接</li>
-<li>浏览器请求数据 打包</li>
-<li>容器解析请求数据包，封装对象</li>
-<li>容器根据对象路径创建servlet对象</li>
-<li>容器调用servlet中的service方法</li>
-<li>容器将响应内容打包发送给浏览器</li>
-<li>浏览器解析容器发送来的数据并展示页面</li>
+<ol>
+<li><p>404 ：Web服务器找不到对应资源<br>常见原因：</p>
+<ul>
+<li>地址错误</li>
+<li><servlet-name>名字不一致</li>
+</ul>
+</li>
+<li><p>405：Web容器找不到service()方法<br>常见原因</p>
+<ul>
+<li>service方法名写错</li>
+<li>service参数类型与规定不一致</li>
+<li>service方法异常或者返回类型不对</li>
+</ul>
+</li>
+<li><p>500：程序运行时异常<br>常见原因  </p>
+<ul>
+<li>Servlet没有继承Servlet接口</li>
+<li>web.xml中的<servlet-class>写错</li>
+<li>service方法错误</li>
+</ul>
+</li>
 </ol>
+<h5 id="servlet如何处理HTTP协议"><a href="#servlet如何处理HTTP协议" class="headerlink" title="servlet如何处理HTTP协议"></a>servlet如何处理HTTP协议</h5><p>当web容器收到一个http请求时，通信数据由web容器负责封装和提供，这些信息被解释为HttpServerRequest和HttpServerResponse<br>HttpServerRequest：读取和写入http请求数据，取得和设置cookies，取得路径信息，标志HTTP会话，请求转发。<br>HttpServerResponse：设置对客户端的输出内容，设置状态响应码，解码方式，设置cookies，实现重定向。</p>
 <h4 id="请求方式的种类"><a href="#请求方式的种类" class="headerlink" title="请求方式的种类"></a>请求方式的种类</h4><ol>
 <li>get：<ul>
 <li>用于在浏览器输入一个地址，点击链接，表单默认提交</li>
