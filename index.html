@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-07-20 08:26:08 / Modified: 14:52:06" itemprop="dateCreated datePublished" datetime="2020-07-20T08:26:08+08:00">2020-07-20</time>
+              <time title="Created: 2020-07-20 08:26:08 / Modified: 14:55:05" itemprop="dateCreated datePublished" datetime="2020-07-20T08:26:08+08:00">2020-07-20</time>
             </span>
 
           
@@ -184,36 +184,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h4><h5 id="什么是Spring？"><a href="#什么是Spring？" class="headerlink" title="什么是Spring？"></a>什么是Spring？</h5><ul>
+          <h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><h4 id="什么是Spring？"><a href="#什么是Spring？" class="headerlink" title="什么是Spring？"></a>什么是Spring？</h4><ul>
 <li>Spring是一个开源的轻量级应用开发框架，Spring提供了一个整体的解决方案，也可以与第三方框架进行组合使用</li>
 <li>Spring的核心是IOC和Aop，可以将组件的耦合程度降至最低</li>
-<li>Spring的本质是管理软件之间的对象，如何创建对象和维护对象之间的关系<h5 id="IOC概念"><a href="#IOC概念" class="headerlink" title="IOC概念"></a>IOC概念</h5></li>
+<li>Spring的本质是管理软件之间的对象，如何创建对象和维护对象之间的关系<h4 id="IOC概念"><a href="#IOC概念" class="headerlink" title="IOC概念"></a>IOC概念</h4></li>
 <li>ioc全程inversion of control，译为控制反转，指创建对象的方式由有依赖关系的bean通过new方法创建被依赖的bean转为由框架进行依赖管理创建bean</li>
 <li>ioc是一种技术概念，具体实现有依赖注入（DI）和依赖查找方式，Spring采用依赖注入的方式</li>
 </ul>
-<h5 id="Spring容器实例化方法"><a href="#Spring容器实例化方法" class="headerlink" title="Spring容器实例化方法"></a>Spring容器实例化方法</h5><p>ApplicationContext继承自BeanFactory接口，推荐使用该方法</p>
+<h4 id="Spring容器实例化方法"><a href="#Spring容器实例化方法" class="headerlink" title="Spring容器实例化方法"></a>Spring容器实例化方法</h4><p>ApplicationContext继承自BeanFactory接口，推荐使用该方法</p>
 <p><img src="/images/pasted-63.png" alt="upload successful"></p>
 <ul>
 <li>注：BeanFactory和ApplicationContext仅仅是一个维护bean定义和相互之间依赖关系的工厂接口。并不实例化Bean。想要使用Spring容器，需要在ApplicationContext.xml中定义Bean，然后getBean();</li>
 </ul>
-<h5 id="Bean的实例化方法"><a href="#Bean的实例化方法" class="headerlink" title="Bean的实例化方法"></a>Bean的实例化方法</h5><ol>
+<h4 id="Bean的实例化方法"><a href="#Bean的实例化方法" class="headerlink" title="Bean的实例化方法"></a>Bean的实例化方法</h4><ol>
 <li>构造器<br>配置文件指定Id和Class，Spring自动调用无参构造方法<br><img src="/images/pasted-64.png" alt="upload successful"></li>
 <li>静态工厂方法<br><Bean>标签中factory-method方法指定一个static修饰的常见Bean 对象的方法<br><img src="/images/pasted-65.png" alt="upload successful"></li>
 <li>实例工厂方法<br>指向容器中另外一个Bean，factory-bean指定bean的Id，factory-method指定factory-bean中的创建Bean的方法<br><img src="/images/pasted-66.png" alt="upload successful"></li>
 </ol>
-<h5 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h5><ul>
+<h4 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h4><ul>
 <li>singleton:容器中只有一个该类型的Bean的实例</li>
 <li>prototype：一次获取创建一个实例</li>
 <li>request： 一次http请求使用一个实例</li>
 <li>session：一次session对应一个实例</li>
 <li>global session：一个全局session的实例</li>
 </ul>
-<h5 id="Bean的生命周期回调"><a href="#Bean的生命周期回调" class="headerlink" title="Bean的生命周期回调"></a>Bean的生命周期回调</h5><p>对单个Bean使用bean标签中的init-method和destroy-method方法指定，对所有bean可使用beans标签中default-init-method和default-destroy-method指定方法</p>
-<h5 id="DI两种注入方式"><a href="#DI两种注入方式" class="headerlink" title="DI两种注入方式"></a>DI两种注入方式</h5><ol>
+<h4 id="Bean的生命周期回调"><a href="#Bean的生命周期回调" class="headerlink" title="Bean的生命周期回调"></a>Bean的生命周期回调</h4><p>对单个Bean使用bean标签中的init-method和destroy-method方法指定，对所有bean可使用beans标签中default-init-method和default-destroy-method指定方法</p>
+<h4 id="DI两种注入方式"><a href="#DI两种注入方式" class="headerlink" title="DI两种注入方式"></a>DI两种注入方式</h4><ol>
 <li>Setter注入<br>通过调用无参构造器或静态工厂方法实例化bean以后就可以通过bean的setter方法完成注入<br><img src="/images/pasted-67.png" alt="upload successful"></li>
-<li>构造器注入<br>通过调用带参数的构造器来实现<br><img src="/images/pasted-68.png" alt="upload successful"><h5 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h5>Spring可以自动装配（autowire）相互协作各个bean之间的关系，在bean标签中使用autowire属性指定装配规则[no,byName,byType,constructor,autodetect]</li>
+<li>构造器注入<br>通过调用带参数的构造器来实现<br><img src="/images/pasted-68.png" alt="upload successful"><h4 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h4>Spring可以自动装配（autowire）相互协作各个bean之间的关系，在bean标签中使用autowire属性指定装配规则[no,byName,byType,constructor,autodetect]</li>
 </ol>
-<h5 id="基于注解的组件扫描"><a href="#基于注解的组件扫描" class="headerlink" title="基于注解的组件扫描"></a>基于注解的组件扫描</h5><ul>
+<h4 id="基于注解的组件扫描"><a href="#基于注解的组件扫描" class="headerlink" title="基于注解的组件扫描"></a>基于注解的组件扫描</h4><ul>
 <li>在xml配置中指定要扫描的包<br><img src="/images/pasted-69.png" alt="upload successful"></li>
 <li>在组件类中使用注解标记<ul>
 <li>@component：通用注解</li>
@@ -231,24 +231,24 @@
 </ul>
 </li>
 </ul>
-<h4 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h4><h5 id="Spring-Mvc简介"><a href="#Spring-Mvc简介" class="headerlink" title="Spring Mvc简介"></a>Spring Mvc简介</h5><ul>
+<h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><h4 id="Spring-Mvc简介"><a href="#Spring-Mvc简介" class="headerlink" title="Spring Mvc简介"></a>Spring Mvc简介</h4><ul>
 <li>M-Model：负责业务逻辑，包含业务数据和业务处理逻辑。比如Dao，Service</li>
 <li>V-View：显示交互界面</li>
 <li>C-Controller:M和V之间的桥梁用于控制流程</li>
 </ul>
-<h5 id="SpringMVC的核心组件"><a href="#SpringMVC的核心组件" class="headerlink" title="SpringMVC的核心组件"></a>SpringMVC的核心组件</h5><p>DispatcherServlet（控制器，请求入口）-&gt;HandlerMapping（映射器，请求派发）-&gt;Controller（控制器，请求处理）-&gt;ModelAndView（模型，封装处理结果和视图-&gt;ViewResolver（视图，视图显示处理器）<br><img src="/images/pasted-71.png" alt="upload successful"></p>
-<h5 id="基于Xml的配置"><a href="#基于Xml的配置" class="headerlink" title="基于Xml的配置"></a>基于Xml的配置</h5><ol>
+<h4 id="SpringMVC的核心组件"><a href="#SpringMVC的核心组件" class="headerlink" title="SpringMVC的核心组件"></a>SpringMVC的核心组件</h4><p>DispatcherServlet（控制器，请求入口）-&gt;HandlerMapping（映射器，请求派发）-&gt;Controller（控制器，请求处理）-&gt;ModelAndView（模型，封装处理结果和视图-&gt;ViewResolver（视图，视图显示处理器）<br><img src="/images/pasted-71.png" alt="upload successful"></p>
+<h4 id="基于Xml的配置"><a href="#基于Xml的配置" class="headerlink" title="基于Xml的配置"></a>基于Xml的配置</h4><ol>
 <li>在src下添加SpringMvc的配置文件spring-mvc.xml</li>
 <li>在web.xml中配置前端控制器DispatcherServlet<br><img src="/images/pasted-72.png" alt="upload successful"></li>
 </ol>
-<h6 id="HandlerMapping组件"><a href="#HandlerMapping组件" class="headerlink" title="HandlerMapping组件"></a>HandlerMapping组件</h6><p>DispatcherServlet通过HandlerMapping把Http请求绑定到对应的controller中<br><img src="/images/pasted-74.png" alt="upload successful"></p>
-<h6 id="Controller组件"><a href="#Controller组件" class="headerlink" title="Controller组件"></a>Controller组件</h6><p>编写Controller组件要实现Controller接口<br><img src="/images/pasted-75.png" alt="upload successful"><br>Controller组件约定handlerRequest方法返回一个ModelAndView对象构造方法如下</p>
+<h5 id="HandlerMapping组件"><a href="#HandlerMapping组件" class="headerlink" title="HandlerMapping组件"></a>HandlerMapping组件</h5><p>DispatcherServlet通过HandlerMapping把Http请求绑定到对应的controller中<br><img src="/images/pasted-74.png" alt="upload successful"></p>
+<h5 id="Controller组件"><a href="#Controller组件" class="headerlink" title="Controller组件"></a>Controller组件</h5><p>编写Controller组件要实现Controller接口<br><img src="/images/pasted-75.png" alt="upload successful"><br>Controller组件约定handlerRequest方法返回一个ModelAndView对象构造方法如下</p>
 <ul>
 <li>ModelAndView（String viewName）</li>
 <li>ModelAndView（String viewName，Map model）</li>
 </ul>
-<h6 id="ViewResolver组件"><a href="#ViewResolver组件" class="headerlink" title="ViewResolver组件"></a>ViewResolver组件</h6><p>ViewResolver通过controller返回的ModelAndView对象中的视图名解析视图<br><img src="/images/pasted-76.png" alt="upload successful"></p>
-<h5 id="基于注解的方式"><a href="#基于注解的方式" class="headerlink" title="基于注解的方式"></a>基于注解的方式</h5><ol>
+<h5 id="ViewResolver组件"><a href="#ViewResolver组件" class="headerlink" title="ViewResolver组件"></a>ViewResolver组件</h5><p>ViewResolver通过controller返回的ModelAndView对象中的视图名解析视图<br><img src="/images/pasted-76.png" alt="upload successful"></p>
+<h4 id="基于注解的方式"><a href="#基于注解的方式" class="headerlink" title="基于注解的方式"></a>基于注解的方式</h4><ol>
 <li>requestMapping用在类定义和方法定义上，用于表明控制器的请求路径。<ul>
 <li>开启该注解需要在xml中定义RequestMapping’HandlerMapping和RequestMappingHandlerAdapter两个bean组件<br><img src="/images/pasted-77.png" alt="upload successful"></li>
 <li>上述步骤也可简化为xml中开启注解<a href="mvc:anotation-driven/">mvc:anotation-driven/</a></li>
