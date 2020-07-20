@@ -145,6 +145,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="YaoDongJi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of YaoDongJi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">区块链的介绍</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-18 22:24:07" itemprop="dateCreated datePublished" datetime="2019-12-18T22:24:07+08:00">2019-12-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-19 19:53:44" itemprop="dateModified" datetime="2019-12-19T19:53:44+08:00">2019-12-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="比特币"><a href="#比特币" class="headerlink" title="比特币"></a>比特币</h2><h3 id="比特币概述"><a href="#比特币概述" class="headerlink" title="比特币概述"></a>比特币概述</h3><p>去中心化的货币由中本聪在实践中首次得到实现，通过使用公共密钥密码来管理所有权，并通过一种一致性算法来跟踪货币的持有者，这种算法被称为“_工作证明_”。（为它同时解决了 2 个问题。首先，它提供了一种简单的、有节制的有效的共识算法，允许网络中的节点一起同意比特币总帐状态的一组更。其次，它提供了一种机制，允许任何节点自由进入共识的处理进程，从而解决了谁来影响共识的政治难题，同时阻止女巫攻击）</p>
+<h3 id="比特币一个状态转移系统"><a href="#比特币一个状态转移系统" class="headerlink" title="比特币一个状态转移系统"></a>比特币一个状态转移系统</h3><p><img src="/images/pasted-10.png" alt="upload successful"></p>
+<p>比特币可以被看作为一个状态转移的系统, 在这个系统里,有一个包含了现在所有已存在的比特币的持有者的状态，并且有一个“状态转移函数”可以使用一<br>个状态和一个交易来产生一个新的状态 </p>
+<p><strong>//使用一个状态和一个交易才生一个新状态，或者返回错误</strong></p>
+<p><strong>“状态”</strong> 在比特币中是指所有的已经被挖出的但是还没消费的硬币的集合 (技术上, “没有被花 掉的交易的产出(unspent transaction outputs)” 或 UTXO) ，每个 UTXO 都有一个面值和一个持有者 (持有者是由 20 个字节组成的地址，其本质是一个加密的公钥). 一个交易包含了一个或多个输入，每一个输入都包含了对一个已存在的 UTXO 的引用，和用持有者的地址所关联着的私钥来产生的一个加密签名, 并且会产生一个或多个输出, 每一个输出包含一个用于添加到状态的新的 UTXO。<br>这状态转移函数 APPLY(S,TX) -&gt; S’ 可以被大概的定义如下: </p>
+<ol>
+<li>在 TX 中的每个输入：<br>o 如果被引用的 UTXO 不在 S 里，返回一个错误.<br>o 如果提供的签名和 UTXO 的所有者匹配不上, 返回一个错误. </li>
+<li>如果所有的输入的 UTXO 的面值的和少于所有输出的 UTXO 的面值的和，返回一个错误. </li>
+<li>返回一个所有输入的 UTXO 都被移除的，所有输出的 UTXO 都被加进的新的 S’ .</li>
+</ol>
+<h3 id="挖矿"><a href="#挖矿" class="headerlink" title="挖矿"></a>挖矿</h3><p>如果任何交易，它的总的输入 的面值比总的输出要高，这一差额会作为“交易费用”转给矿工。顺便提一下，对矿工的奖励是比特币发行的唯一途径，创世状态中并没有比特币<br>需要把状态转移系统和一致性系统结合起来，以确保每个人都 同意这交易的顺序。比特币的去中心化的一致性处理进程要求网络中的节点连续不断的去尝试对交易进行打包，这些被打成的包就称为<strong>“区块”</strong>。 这个网络会故意的每隔 10 分钟左右就创建一个区块, 每一个区块里都包含一个时间戳，一个随机数，一个对上一个区块的引用 ，和从上一个区块开始的所有交易的列表。随着时间的推移，这会创建一个持久的，不断增长的区块链，这个区块链不断的被更新，使其始终代表着最新的比特币总账的状态。 </p>
+<p><strong>验证一个区块是否有效的算法如下</strong></p>
+<ol>
+<li>检查其引用的上一个区块是否存在并且有效. </li>
+<li>检查这个区块的时间戳是否大于上一个区块的时间戳 并且小于 2 小时之内 </li>
+<li>检查这区块上的工作证明是否有效. </li>
+<li>让 S[0] 成为上一个区块的最末端的状态. </li>
+<li>假设 TX 是这个区块的交易列表，且有 n 个交易。 做 for 循环，把 i 从 0 加到到 n-1， 设<br>置 S[i+1] = APPLY(S[i],TX[i]) 如果任何一个应用(APPLY)返回错误，则退出并且返回。 </li>
+<li>返回 true,并且把 S[n] 设置成这个区块最末端的状态。 </li>
+</ol>
+<h3 id="工作证明"><a href="#工作证明" class="headerlink" title="工作证明"></a>工作证明</h3><p>工作证明” 这一明确的条件就是每一个区块的 2 次 SHA256 哈希值, 它作为一个 256 位的数字,必须小于一个动态调整的目标值<br>因为 SHA256 被设计成一个完全不可预 测的伪随机函数, 这创建一个有效区块的唯一的方法只有是不断的尝试和出错， 不断对随机数进行递增，然后查看新的哈希值是否匹配。</p>
+<h3 id="默克尔树-Merkle-Trees"><a href="#默克尔树-Merkle-Trees" class="headerlink" title="默克尔树(Merkle Trees)"></a>默克尔树(Merkle Trees)</h3><p><img src="/images/pasted-11.png" alt="upload successful"></p>
+<p>默克尔树是一 种二叉树，包含了一组节点，它们的含有基础信息的树根有大量的叶子节点，一组中间节点，每一 个节点都是它的 2 个子节点的哈希，然后，最终的一个根节点，也是由它的 2 个子节点的哈希形成，代表着这树的“顶端”。 这个默克尔树的目的是允许在一个区块中的数据能够被零散的传递:<br>一个节点只能从一个源来下载一个区块的头信息，树的一小部分关联着另一个源 ，并且任然可以保证所有的数据都是正确的。之所以这样做行得通，是因为哈希值都是向上传导的:</p>
+<h3 id="山寨区块链应用"><a href="#山寨区块链应用" class="headerlink" title="山寨区块链应用"></a>山寨区块链应用</h3><p>有 2 中构建共识的方法：一是构建一个独立的网络，二是在比特币之上建立一个 协议 </p>
+<h2 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h2><p>以太坊的目的是创建一种去中心化应用的协议，提供一套对大量的去中心化应用程序非常有用的新方案，<strong>特别强调快速开发，对小的和少数人使用的应用也非常安全（小而使用人少的应用容易被51%攻破），以及不同的应用程序之间能够有效的互动。</strong></p>
+<h3 id="以太坊虚拟机"><a href="#以太坊虚拟机" class="headerlink" title="以太坊虚拟机"></a>以太坊虚拟机</h3><p>以太坊是一系列协议，其核心就是一个以太坊虚拟机，能执行遵守协议的任何复杂的代 码。以太坊虚拟机是图灵完备的，开发者可以在虚拟机上使用像 javascript，python 这样的友好编程语言来创建应用。和任何的区块链一样，以太坊包含了一个点对点的网络协议。这以太坊区块链是被链接着这个网络的各个节点维护和更新的。网络中的各个节点的虚拟机都执行相同的指令来共同维护区块数据库，因为这个原因，以太坊有时候被人称为 &nbsp;&nbsp;&nbsp;<strong>“世界计算机”</strong>&nbsp;。 </p>
+<h3 id="以太坊账户"><a href="#以太坊账户" class="headerlink" title="以太坊账户"></a>以太坊账户</h3><p>以太坊的基本单元是账号。每一个账户都有一个 20 个字节长度的地址 。以太坊区块链跟踪每一个 账号的状态，区块链上所有状态的转移都是账户之间的令牌（令牌即以太币）和信息的转移。以太 坊有 2 种账户类型<br><strong>外部账号</strong>，简称 EOA,是由私钥来控制的。<br><strong>合约帐户</strong>,由合约代码来控制,且只能由一个 EOA 账号来操作<br>最基本的区别在于，用户掌握着 EOA 账号，因为用户掌握着控制 EOA 账号的<br>私钥。而合约账号由内部程序代码来控制的</p>
+<p>一个以太坊的账户包含下面 4 个字段:<br>• 随机数, 一个计数器，用以确保每个交易都只会被处理一次<br>• 账户当前的以太币额度<br>• 账户的合约代码, 如果有的话<br>• 这个账户的 存储 (默认空)<br>外部拥有的账户没有代码，用户可以通过一个外部账户来创建和签名一个交易来送一个消息；合约账户中，每次当这个合 约收到一个消息的时候，它的代码就会被激活，允许它读取这个消息，并且写入到内部存储中，然后按照一定顺序发送其他的消息或创建合约等。 </p>
+<h3 id="消息和交易"><a href="#消息和交易" class="headerlink" title="消息和交易"></a>消息和交易</h3><p>名词“交易”在以太坊中是指签名的数据包，这个数据包中存储了从外部账户发送的消息，交易包 含以下内容:<br>• 消息的接收者<br>• 一个可以识别发送者的签名<br>• 发送方给接收方的以太币的数量<br>• 一个可选的数据字段<br>• 一个 STARTGAS 值, 表示执行这个交易允许消耗的最大计算步骤<br>• 一个 GASPRICE 值, 表示发送方的每个计算步骤的费用  </p>
+<h3 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h3><p><img src="/images/pasted-12.png" alt="upload successful"></p>
+<h4 id="以太坊状态转移函数"><a href="#以太坊状态转移函数" class="headerlink" title="以太坊状态转移函数"></a>以太坊状态转移函数</h4><p><img src="/images/pasted-13.png" alt="upload successful"></p>
+<h3 id="区块链和挖矿"><a href="#区块链和挖矿" class="headerlink" title="区块链和挖矿"></a>区块链和挖矿</h3><p><img src="/images/pasted-14.png" alt="upload successful"></p>
+<hr>
+<hr>
+<h2 id="学习过程中学习到的一些零碎知识"><a href="#学习过程中学习到的一些零碎知识" class="headerlink" title="学习过程中学习到的一些零碎知识"></a>学习过程中学习到的一些零碎知识</h2><h3 id="DS-Store-是什么"><a href="#DS-Store-是什么" class="headerlink" title=".DS_Store 是什么"></a>.DS_Store 是什么</h3><p>.DS_Store(英文全称 Desktop Services Store)是一种由苹果公司的Mac OS X操作系统所创造的隐藏文件，目的在于存贮目录的自定义属性，例如文件们的图标位置或者是背景色的选择。相当于 Windows 下的 desktop.ini。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/13/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8GitHub-hexo-%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -281,7 +380,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
