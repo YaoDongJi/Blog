@@ -145,6 +145,168 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/02/zookeeper%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="YaoDongJi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of YaoDongJi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/02/zookeeper%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">zookeeper的学习相关</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-02 15:33:47 / Modified: 17:09:15" itemprop="dateCreated datePublished" datetime="2020-08-02T15:33:47+08:00">2020-08-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>zookeeper是一个开源的分布式协调服务，目的是将那些复杂并且容易出错的的分布式一致性服务封装起来，以简单接口的方式开发给用户使用</li>
+<li>zookeeper是一个典型的分布式一致性解决方案，可以 基于它实现<ul>
+<li>数据订阅/发布</li>
+<li>负载均衡</li>
+<li>命名服务</li>
+<li>分布式协调/通知        </li>
+<li>集群管理</li>
+<li>master选举</li>
+<li>分布式锁和分布式队列</li>
+</ul>
+</li>
+</ul>
+<h4 id="分布式一致性特性"><a href="#分布式一致性特性" class="headerlink" title="分布式一致性特性"></a>分布式一致性特性</h4><ol>
+<li>顺序一致性 ：从一个客户端发起的事物请求会严格按照发起顺序被存储到zookeeper上</li>
+<li>原子性：事物执行结果在所有服务器集群内一直，要么全部应用，要么都没有应用</li>
+<li>单一视图：无论客户端连接的是哪一个服务器，其数据模型都是一样的</li>
+<li>可靠性： 服务端状态变更会被保留</li>
+<li>实时性：zookeeper保证在一定时间段内，客户端能读取到最新数据状态</li>
+</ol>
+<h4 id="集群角色"><a href="#集群角色" class="headerlink" title="集群角色"></a>集群角色</h4><p>在zookeeper中有三种角色</p>
+<ul>
+<li>Leader</li>
+<li>Follower</li>
+<li>Observer  </li>
+</ul>
+<p>一个集群内同一时间只有一个Leader，其他都是Follower，zookeeper默认没有Observer模式，想要使用在zoo.cfg中加入peetype=Observer并在server配置末尾加入：observer例如server.1:localhost:2888:3888:observer<br>zookeeper通过选举机制选举一个Leader，具有读和写的功能，其他Follower具有读的功能，Observer不参与master选举，具备读功能，因此Observer可以在不影响写性能的前提下提升系统的读性能</p>
+<h4 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h4><p>seesion指的是客户端会话。客户端和zookeeper之间进行TCP长连接，通过心跳检测和服务器保持有效会话，能够向zookeeper服务器发送请求接收响应同时也能接受服务器的watch事件通知。session的SessionTimeOut时间规定了session如果因其他原因断开连接，一段时间内连上集群内任何一个服务器会话仍然有效</p>
+<h4 id="数据节点"><a href="#数据节点" class="headerlink" title="数据节点"></a>数据节点</h4><p>zookeeper中的数据节点指的是数据模型中的数据单元，成为ZNode。zookeeper将所有数据存储到内存中，数据结构是一棵由 / 分割的树，每个ZNode上会保存自己的数据内容，同时存储一系列属性信息</p>
+<h5 id="持久节点"><a href="#持久节点" class="headerlink" title="持久节点"></a>持久节点</h5><p>ZNode一旦被创建将一直保存，除非移除它</p>
+<h5 id="临时节点"><a href="#临时节点" class="headerlink" title="临时节点"></a>临时节点</h5><p>ZNode与Session生命周期绑定</p>
+<h5 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h5><p>对于每个ZNode中都会存储Stat的数据结构，Stat中有version（当前ZNode版本），cversion（当前ZNode的子节点的版本），aversion（当前Znode的ACL版本）</p>
+<h5 id="状态信息"><a href="#状态信息" class="headerlink" title="状态信息"></a>状态信息</h5><p>ZNode不知存储数据，还存储了ZNod本身的状态信息，通过get命令可以查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 23] get &#x2F;yarn-leader-election&#x2F;appcluster-yarn&#x2F;ActiveBreadCrumb</span><br><span class="line"></span><br><span class="line">appcluster-yarnrm1</span><br><span class="line">cZxid &#x3D; 0x1b00133dc0    &#x2F;&#x2F;Created ZXID,表示该ZNode被创建时的事务ID</span><br><span class="line">ctime &#x3D; Tue Jan 03 15:44:42 CST 2017    &#x2F;&#x2F;Created Time,表示该ZNode被创建的时间</span><br><span class="line">mZxid &#x3D; 0x1d00000063    &#x2F;&#x2F;Modified ZXID，表示该ZNode最后一次被更新时的事务ID</span><br><span class="line">mtime &#x3D; Fri Jan 06 08:44:25 CST 2017    &#x2F;&#x2F;Modified Time，表示该节点最后一次被更新的时间</span><br><span class="line">pZxid &#x3D; 0x1b00133dc0    &#x2F;&#x2F;表示该节点的子节点列表最后一次被修改时的事务ID。注意，只有子节点列表变更了才会变更pZxid，子节点内容变更不会影响pZxid。</span><br><span class="line">cversion &#x3D; 0    &#x2F;&#x2F;子节点的版本号</span><br><span class="line">dataVersion &#x3D; 11    &#x2F;&#x2F;数据节点的版本号</span><br><span class="line">aclVersion &#x3D; 0    &#x2F;&#x2F;ACL版本号</span><br><span class="line">ephemeralOwner &#x3D; 0x0    &#x2F;&#x2F;创建该节点的会话的seddionID。如果该节点是持久节点，那么这个属性值为0。</span><br><span class="line">dataLength &#x3D; 22    &#x2F;&#x2F;数据内容的长度</span><br><span class="line">numChildren &#x3D; 0    &#x2F;&#x2F;子节点的个数</span><br></pre></td></tr></table></figure>
+<h4 id="事务操作"><a href="#事务操作" class="headerlink" title="事务操作"></a>事务操作</h4><p>在ZooKeeper中，能改变ZooKeeper服务器状态的操作称为事务操作。一般包括数据节点创建与删除、数据内容更新和客户端会话创建与失效等操作。对应每一个事务请求，ZooKeeper都会为其分配一个全局唯一的事务ID，用ZXID表示，通常是一个64位的数字。每一个ZXID对应一次更新操作，从这些ZXID中可以间接地识别出ZooKeeper处理这些事务操作请求的全局顺序。</p>
+<h4 id="Watcher"><a href="#Watcher" class="headerlink" title="Watcher"></a>Watcher</h4><p>zookeeper允许用户在指定节点上注册监听器，一旦节点数据改变，将会被通知。该机制是zookeeper实现分布式协调的重要机制</p>
+<h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>zookeeper采用ACL（Access Control List）进行权限控制，有如下五种权限</p>
+<ul>
+<li>Create</li>
+<li>Reade</li>
+<li>Write     </li>
+<li>Delete</li>
+<li>Admin:设置节点ACL权限<br>其中Create和Delete都是针对子节点的权限<h4 id="ZAB"><a href="#ZAB" class="headerlink" title="ZAB"></a>ZAB</h4>zookeeper采用ZooKeeper Atomic Brodcast协议作为一致性算法协议<br>所有事务请求必须由一个全局唯一的服务器来协调处理，这样的服务器被称为Leader服务器，而剩下的其他服务器则成为Follower服务器。Leader服务器负责将一个客户端事务请求转换成一个事务Proposal（提案）并将该Proposal分发给集群中所有的Follower服务器。之后Leader服务器需要等待所有Follower服务器的反馈，一旦超过半数的Follower服务器进行了正确的反馈后，Leader就会再次向所有的Follower服务器分发Commit消息，要求对刚才的Proposal进行提交。</li>
+</ul>
+<p>ZAB协议包括两种基本的模式，分别是<strong>崩溃恢复和消息广播</strong>。在整个ZooKeeper集群启动过程中，或是当Leader服务器出现网络中断、崩溃退出与重启等异常情况时，ZAB协议就会进入恢复模式并选举产生新的Leader服务器。当选举产生了新的Leader服务器，同时集群中有<strong>过半的机器与该Leader服务器完成了状态同步</strong>之后，ZAB协议就会退出恢复模式。其中，状态同步是指数据同步，用来保证集群中存在过半的机器能够和Leader服务器的数据状态保持一致。</p>
+<p>崩溃恢复模式包括两个阶段：Leader选举和数据同步。</p>
+<p>当集群中有过半的Follower服务器完成了和Leader服务器的状态同步，那么整个集群就可以进入消息广播模式了。</p>
+<p>作者：Jeffbond<br>链接：<a href="https://www.jianshu.com/p/84ad63127cd1" target="_blank" rel="noopener">https://www.jianshu.com/p/84ad63127cd1</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h3 id="zookeeper的典型应用场景"><a href="#zookeeper的典型应用场景" class="headerlink" title="zookeeper的典型应用场景"></a>zookeeper的典型应用场景</h3><h4 id="数据发布与订阅"><a href="#数据发布与订阅" class="headerlink" title="数据发布与订阅"></a>数据发布与订阅</h4><p>数据发布与订阅即所谓的配置中心，将配置存储在数据节点上供订阅者订阅进而达到动态获取数据的目的，实现配置信息的集中式管理和动态更新</p>
+<ul>
+<li>数据量通常比较小。</li>
+<li>数据内容在运行时动态变化。</li>
+<li>集群中各机器共享，配置一致。</li>
+<li>对于这样的全局配置信息就可以发布到ZooKeeper上，让客户端（集群的机器）去订阅该消息。</li>
+</ul>
+<p>发布/订阅系统一般有两种设计模式，分别是推（Push）和拉（Pull）模式。</p>
+<ul>
+<li>推：服务端主动将数据更新发送给所有订阅的客户端。</li>
+<li>拉：客户端主动发起请求来获取最新数据，通常客户端都采用定时轮询拉取的方式。<br>ZooKeeper采用的是<strong>推拉</strong>相结合的方式。如下：</li>
+</ul>
+<p>客户端想服务端注册自己需要关注的节点，一旦该节点的数据发生变更，那么服务端就会向相应的客户端发送Watcher事件通知，客户端接收到这个消息通知后，需要主动到服务端获取最新的数据（推拉结合）。</p>
+<h4 id="命名服务-Naming-Service"><a href="#命名服务-Naming-Service" class="headerlink" title="命名服务(Naming Service)"></a>命名服务(Naming Service)</h4><p>命名服务也是分布式系统中比较常见的一类场景。在分布式系统中，通过使用命名服务，客户端应用能够根据指定名字来获取资源或服务的地址，提供者等信息。被命名的实体通常可以是集群中的机器，提供的服务，远程对象等等——这些我们都可以统称他们为名字（Name）。其中较为常见的就是一些分布式服务框架（如RPC、RMI）中的服务地址列表。通过在ZooKeepr里创建顺序节点，能够很容易创建一个全局唯一的路径，这个路径就可以作为一个名字。</p>
+<p>ZooKeeper的命名服务即生成全局唯一的ID。</p>
+<h4 id="分布式协调-通知"><a href="#分布式协调-通知" class="headerlink" title="分布式协调/通知"></a>分布式协调/通知</h4><p>ZooKeeper中特有Watcher注册与异步通知机制，能够很好的实现分布式环境下不同机器，甚至不同系统之间的通知与协调，从而实现对数据变更的实时处理。使用方法通常是不同的客户端都对ZK上同一个ZNode进行注册，监听ZNode的变化（包括ZNode本身内容及子节点的），如果ZNode发生了变化，那么所有订阅的客户端都能够接收到相应的Watcher通知，并做出相应的处理。</p>
+<p>ZK的分布式协调/通知，是一种通用的分布式系统机器间的通信方式。</p>
+<h4 id="心跳检测"><a href="#心跳检测" class="headerlink" title="心跳检测"></a>心跳检测</h4><p>基于ZK的临时节点的特性，可以让不同的进程都在ZK的一个指定节点下创建临时子节点，不同的进程直接可以根据这个临时子节点来判断对应的进程是否存活。通过这种方式，检测和被检测系统直接并不需要直接相关联，而是通过ZK上的某个节点进行关联，大大减少了系统耦合。</p>
+<h4 id="ZooKeeper在Hadoop中的应用"><a href="#ZooKeeper在Hadoop中的应用" class="headerlink" title="ZooKeeper在Hadoop中的应用"></a>ZooKeeper在Hadoop中的应用</h4><p>在Hadoop中，ZooKeeper主要用于实现HA(Hive Availability），包括HDFS的NamaNode和YARN的ResourceManager的HA。同时，在YARN中，ZooKeepr还用来存储应用的运行状态。HDFS的NamaNode和YARN的ResourceManager利用ZooKeepr实现HA的原理是一样的，所以本节以YARN为例来介绍。<br><img src="/images/pasted-79.png" alt="upload successful"><br>从上图可以看出，YARN主要由ResourceManager（RM）、NodeManager（NM）、ApplicationMaster（AM）和Container四部分组成。其中最核心的就是ResourceManager。</p>
+<p>ResourceManager负责集群中所有资源的统一管理和分配，同时接收来自各个节点（NodeManager）的资源汇报信息，并把这些信息按照一定的策略分配给各个应用程序（Application Manager），其内部维护了各个应用程序的ApplicationMaster信息、NodeManager信息以及资源使用信息等。</p>
+<p>为了实现HA，必须有多个ResourceManager并存（一般就两个），并且只有一个ResourceManager处于Active状态，其他的则处于Standby状态，当Active节点无法正常工作（如机器宕机或重启）时，处于Standby的就会通过竞争选举产生新的Active节点。</p>
+<h5 id="主备切换"><a href="#主备切换" class="headerlink" title="主备切换"></a>主备切换</h5><ol>
+<li>创建锁节点：在ZooKeeper上会有一个/yarn-leader-election/appcluster-yarn的锁节点，所有的ResourceManager在启动的时候，都会去竞争写一个Lock子节点：/yarn-leader-election/appcluster-yarn/ActiveBreadCrumb，该节点是临时节点。ZooKeepr能够为我们保证最终只有一个ResourceManager能够创建成功。创建成功的那个ResourceManager就切换为Active状态，没有成功的那些ResourceManager则切换为Standby状态。</li>
+<li>注册Watcher监听：所有Standby状态的ResourceManager都会向/yarn-leader-election/appcluster-yarn/ActiveBreadCrumb节点注册一个节点变更的Watcher监听，利用临时节点的特性，能够快速感知到Active状态的ResourceManager的运行情况。</li>
+<li>主备切换：当Active状态的ResourceManager出现诸如宕机或重启的异常情况时，其在ZooKeeper上连接的客户端会话就会失效，因此/yarn-leader-election/appcluster-yarn/ActiveBreadCrumb节点就会被删除。此时其余各个Standby状态的ResourceManager就都会接收到来自ZooKeeper服务端的Watcher事件通知，然后会重复进行步骤1的操作</li>
+</ol>
+<h4 id="ZooKeeper在HBase中的应用"><a href="#ZooKeeper在HBase中的应用" class="headerlink" title="ZooKeeper在HBase中的应用"></a>ZooKeeper在HBase中的应用</h4><p>HBase主要用ZooKeeper来实现HMaster选举与主备切换、系统容错、RootRegion管理、Region状态管理和分布式SplitWAL任务管理等。</p>
+<h5 id="系统容错"><a href="#系统容错" class="headerlink" title="系统容错"></a>系统容错</h5><p>当HBase启动时，每个RegionServer都会到ZooKeeper的/hbase/rs节点下创建一个信息节点（下文中，我们称该节点为”rs状态节点”），例如/hbase/rs/[Hostname]，同时，HMaster会对这个节点注册监听。当某个 RegionServer 挂掉的时候，ZooKeeper会因为在一段时间内无法接受其心跳（即 Session 失效），而删除掉该 RegionServer 服务器对应的 rs 状态节点。与此同时，HMaster 则会接收到 ZooKeeper 的 NodeDelete 通知，从而感知到某个节点断开，并立即开始容错工作。</p>
+<p>HBase为什么不直接让HMaster来负责RegionServer的监控呢？如果HMaster直接通过心跳机制等来管理RegionServer的状态，随着集群越来越大，HMaster的管理负担会越来越重，另外它自身也有挂掉的可能，因此数据还需要持久化。在这种情况下，ZooKeeper就成了理想的选择。</p>
+<h5 id="RootRegion管理"><a href="#RootRegion管理" class="headerlink" title="RootRegion管理"></a>RootRegion管理</h5><p>对应HBase集群来说，数据存储的位置信息是记录在元数据region，也就是RootRegion上的。每次客户端发起新的请求，需要知道数据的位置，就会去查询RootRegion，而RootRegion自身位置则是记录在ZooKeeper上的（默认情况下，是记录在ZooKeeper的/hbase/meta-region-server节点中）。当RootRegion发生变化，比如Region的手工移动、重新负载均衡或RootRegion所在服务器发生了故障等是，就能够通过ZooKeeper来感知到这一变化并做出一系列相应的容灾措施，从而保证客户端总是能够拿到正确的RootRegion信息。</p>
+<h5 id="Region管理"><a href="#Region管理" class="headerlink" title="Region管理"></a>Region管理</h5><p>HBase里的Region会经常发生变更，这些变更的原因来自于系统故障、负载均衡、配置修改、Region分裂与合并等。一旦Region发生移动，它就会经历下线（offline）和重新上线（online）的过程。</p>
+<p>在下线期间数据是不能被访问的，并且Region的这个状态变化必须让全局知晓，否则可能会出现事务性的异常。对于大的HBase集群来说，Region的数量可能会多达十万级别，甚至更多，这样规模的Region状态管理交给ZooKeeper来做也是一个很好的选择。</p>
+<h5 id="分布式SplitWAL任务管理"><a href="#分布式SplitWAL任务管理" class="headerlink" title="分布式SplitWAL任务管理"></a>分布式SplitWAL任务管理</h5><p>当某台RegionServer服务器挂掉时，由于总有一部分新写入的数据还没有持久化到HFile中，因此在迁移该RegionServer的服务时，一个重要的工作就是从WAL中恢复这部分还在内存中的数据，而这部分工作最关键的一步就是SplitWAL，即HMaster需要遍历该RegionServer服务器的WAL，并按Region切分成小块移动到新的地址下，并进行日志的回放（replay）。</p>
+<p>由于单个RegionServer的日志量相对庞大（可能有上千个Region，上GB的日志），而用户又往往希望系统能够快速完成日志的恢复工作。因此一个可行的方案是将这个处理WAL的任务分给多台RegionServer服务器来共同处理，而这就又需要一个持久化组件来辅助HMaster完成任务的分配。当前的做法是，HMaster会在ZooKeeper上创建一个SplitWAL节点（默认情况下，是/hbase/SplitWAL节点），将”哪个RegionServer处理哪个Region”这样的信息以列表的形式存放到该节点上，然后由各个RegionServer服务器自行到该节点上去领取任务并在任务执行成功或失败后再更新该节点的信息，以通知HMaster继续进行后面的步骤。ZooKeeper在这里担负起了分布式集群中相互通知和信息持久化的角色。</p>
+<p>作者：Jeffbond<br>链接：<a href="https://www.jianshu.com/p/84ad63127cd1" target="_blank" rel="noopener">https://www.jianshu.com/p/84ad63127cd1</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h3 id="zookeeper集群模式安装"><a href="#zookeeper集群模式安装" class="headerlink" title="zookeeper集群模式安装"></a>zookeeper集群模式安装</h3><ol>
+<li>配置JAVA环境，检验环境：java -version</li>
+<li>下载并解压zookeeper  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  # cd &#x2F;usr&#x2F;local</span><br><span class="line"># wget http:&#x2F;&#x2F;mirror.bit.edu.cn&#x2F;apache&#x2F;zookeeper&#x2F;stable&#x2F;zookeeper-3.4.12.tar.gz</span><br><span class="line"># tar -zxvf zookeeper-3.4.12.tar.gz</span><br><span class="line"># cd zookeeper-3.4.12</span><br></pre></td></tr></table></figure></li>
+<li>重命名 zoo_sample.cfg文件</li>
+<li>修改配置文件zoo-1.cfg，原配置文件里有的，修改成下面的值，没有的则加上  <figure class="highlight plain"><figcaption><span>vim conf/zoo-1.cfg</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dataDir&#x3D;&#x2F;tmp&#x2F;zookeeper-1</span><br><span class="line">clientPort&#x3D;2181</span><br><span class="line">server.1&#x3D;127.0.0.1:2888:3888</span><br><span class="line">server.2&#x3D;127.0.0.1:2889:3889</span><br><span class="line">server.3&#x3D;127.0.0.1:2890:3890</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>配置说明</p>
+<ul>
+<li>tickTime：这个时间是作为 Zookeeper 服务器之间或客户端与服务器之间维持心跳的时间间隔，也就是每个 tickTime 时间就会发送一个心跳。</li>
+<li>initLimit：这个配置项是用来配置 Zookeeper 接受客户端（这里所说的客户端不是用户连接 Zookeeper 服务器的客户端，而是 Zookeeper 服务器集群中连接到 Leader 的 Follower 服务器）初始化连接时最长能忍受多少个心跳时间间隔数。当已经超过 10个心跳的时间（也就是 tickTime）长度后 Zookeeper 服务器还没有收到客户端的返回信息，那么表明这个客户端连接失败。总的时间长度就是 10*2000=20 秒</li>
+<li>syncLimit：这个配置项标识 Leader 与 Follower 之间发送消息，请求和应答时间长度，最长不能超过多少个 tickTime 的时间长度，总的时间长度就是 5*2000=10秒</li>
+<li>dataDir：顾名思义就是 Zookeeper 保存数据的目录，默认情况下，Zookeeper 将写数据的日志文件也保存在这个目录里。</li>
+<li>clientPort：这个端口就是客户端连接 Zookeeper 服务器的端口，Zookeeper 会监听这个端口，接受客户端的访问请求。<br>server.A=B：C：D：其中 A 是一个数字，表示这个是第几号服务器；B 是这个服务器的 ip 地址；C 表示的是这个服务器与集群中的 Leader 服务器交换信息的端口；D 表示的是万一集群中的 Leader 服务器挂了，需要一个端口来重新进行选举，选出一个新的 Leader，而这个端口就是用来执行选举时服务器相互通信的端口。如果是伪集群的配置方式，由于 B 都是一样，所以不同的 Zookeeper 实例通信端口号不能一样，所以要给它们分配不同的端口号。  </li>
+</ul>
+<p>5.再从zoo-1.cfg复制两个配置文件zoo-2.cfg和zoo-3.cfg，只需修改dataDir和clientPort不同即可  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># cp conf&#x2F;zoo-1.cfg conf&#x2F;zoo-2.cfg</span><br><span class="line"># cp conf&#x2F;zoo-1.cfg conf&#x2F;zoo-3.cfg</span><br><span class="line"># vim conf&#x2F;zoo-2.cfg</span><br><span class="line">dataDir&#x3D;&#x2F;tmp&#x2F;zookeeper-2</span><br><span class="line">clientPort&#x3D;2182</span><br><span class="line"># vim conf&#x2F;zoo-2.cfg</span><br><span class="line">dataDir&#x3D;&#x2F;tmp&#x2F;zookeeper-3</span><br><span class="line">clientPort&#x3D;2183</span><br></pre></td></tr></table></figure>
+<p>6.启动三个zookeeper实例  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># bin&#x2F;zkServer.sh start conf&#x2F;zoo-1.cfg</span><br><span class="line"># bin&#x2F;zkServer.sh start conf&#x2F;zoo-2.cfg</span><br><span class="line"># bin&#x2F;zkServer.sh start conf&#x2F;zoo-3.cfg</span><br></pre></td></tr></table></figure>
+<p>7.检测集群状态，也可以直接用命令“zkCli.sh -server IP:PORT”连接zookeeper服务端检测<br><img src="/images/pasted-80.png" alt="upload successful"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/Spring%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1039,77 +1201,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/20/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="YaoDongJi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog of YaoDongJi">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/20/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">以太坊以及账户创建和管理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-12-20 09:41:17" itemprop="dateCreated datePublished" datetime="2019-12-20T09:41:17+08:00">2019-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-22 11:09:31" itemprop="dateModified" datetime="2019-12-22T11:09:31+08:00">2019-12-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="客户端介绍和安装"><a href="#客户端介绍和安装" class="headerlink" title="客户端介绍和安装"></a>客户端介绍和安装</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p><strong>Mist</strong><br>是一个去中心化的分散的web3.0应用的浏览器。<br><strong>Ethereum Wallet</strong><br>一个只绑定了以太坊钱包应用的Mist浏览器，因为它只绑定了这一个应用：以太坊钱包。所以被<br>称作为“Ethereum Wallet”。<br>注：Mist = Ethereum Wallet + Web3 浏览器</p>
-<h4 id="安装问题"><a href="#安装问题" class="headerlink" title="安装问题"></a>安装问题</h4><p>网上国内镜像下载安装版，geth 运行不了，mist运行一直提示&emsp;请手动安装geth&emsp;，打开C:\Users\root\AppData\Roaming\Mist\binaries\Geth发现geth未能解压成功，解压成功后仍不能运行，网上找了另一个版本，并且自己建立一个unpacked文件夹，把geth.exe放进去，并且以兼容模式运行，此问题暂时解决。</p>
-<h4 id="安装提示"><a href="#安装提示" class="headerlink" title="安装提示"></a>安装提示</h4><p>更换默认的区块存储路径<br>mklink /j “C:\Users\ethereum\AppData\Roaming\Ethereum”“C:\Ethereum”<br>如果你有一个区块链数据已经同步完整的以太坊节点，那么你可以导出这节点的区块链数据，然后导入到您的一个新的以太坊节点。你可以命令geth –testnet export filename导出数据，然后使用geth –testnet import filename导入数据到新的节点。</p>
-<h3 id="以太坊账户创建和管理"><a href="#以太坊账户创建和管理" class="headerlink" title="以太坊账户创建和管理"></a>以太坊账户创建和管理</h3><h4 id="秘钥文件"><a href="#秘钥文件" class="headerlink" title="秘钥文件"></a>秘钥文件</h4><p>每一个账号都有一对密钥，一个私钥和一个公钥。账号和地址是一一对应的。账号被来自密钥的最后20个字节的地址索引着的。每一个私钥/地址对都被编码进一个密钥文件。密钥文件是一个json格式的文本文件，可以用任何的文本工具打开和编辑它。密钥文件的重要组成部分—你账号的私钥，是使用你在创建账号时输入的密码来加密保护的。密钥文件存储在你的以太坊客户端的keystore子目录中。确保定期备份你的key<br>文件！！<br> <strong>在创建账户之后，要注意：一定要记住你的密码和备份你的密钥文件！！！</strong></p>
-<h4 id="使用-geth-account-new"><a href="#使用-geth-account-new" class="headerlink" title="使用 geth account new"></a>使用 geth account new</h4><p> 使用以太坊命令控制台程序（geth ），那创建账号只需要在命令行里执行 geth account new 命令 即可。</p>
-<h4 id="备份账号"><a href="#备份账号" class="headerlink" title="备份账号"></a>备份账号</h4><p> 以太坊网络没有所谓“找回账户密码”的功能。所以一旦丢失账户或忘记密码，那将是一件无可挽回的事情，你将永远的失去你的账户，和你这账户中的所有以太币！<br>备份账户很简单：<br>C:\Users\你的账户\AppData\Roaming\Ethereum\ 中的“keystore”目录整个备份一遍，并且同时备份好你的账户密码。<br>下次，你只需要把你备份的“keystore”目录中的文件，复制到你的新的客户端对应的目录，你就可以在你的新客户端上操作你的账户了。</p>
-<h4 id="多重签名"><a href="#多重签名" class="headerlink" title="多重签名"></a>多重签名</h4><p>你可以使用以太坊钱包的多重签名来保护你账户中的余额。使用多重签名的好处是，当要从账户中提取较大额度的金额时，需要多个账户的共同认证才能成功提取。在创建一个多重签名的钱包前，你首先至少需要创建2个账户。<br>在以太坊钱包中创建账号很容易，只需要在 Accounts 选项卡，点击 ‘Add Account’。创建至少2个账号。<br>你现在需要向你的主账号添加不少于0.02的以太币（用于创建多重签名钱包的账号），这是创建多重签名钱包合约的交易费用。另外还需要至少1以太币，因为当前mist需要有足够的 ‘gas’来确保多重签名钱包合约能够正确的执行交易。所以一开始总共需要1.02的以太币。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1179,7 +1270,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
